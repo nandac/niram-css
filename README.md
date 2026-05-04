@@ -1,16 +1,20 @@
 # The `niram-css` Package
- <!-- markdownlint-disable MD033 -->
+<!-- markdownlint-disable MD033 -->
 <div align="center">Version 0.1.0</div>
 
 Allows CSS/SVG named colors to be used directly in a Typst document.
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on the Typst web app.
+Import the package at the top of your Typst document:
 
 ```typ
 #import "@preview/niram-css:0.1.0": *
+```
 
+Then use the `css` function anywhere a color value is expected:
+
+```typ
 Normal text may be #text(fill: css("crimson"))[colored so.]
 ```
 
@@ -19,65 +23,13 @@ Normal text may be #text(fill: css("crimson"))[colored so.]
   <img src="./thumbnail-light.svg" alt="">
 </picture>
 
-## Installation
+## Requirements
 
-Follow these steps to set up your development environment and prepare for contributing to the project:
-
-1. **Typst:**
-   Install Typst (version 0.13.0 or higher) using the [official installation instructions](https://github.com/typst/typst?tab=readme-ov-file#installation). Typst is required to work with the core functionality of the project.
-
-1. **Just:**
-   Install [Just](https://just.systems/man/en/introduction.html), a handy command runner for executing predefined tasks. You can install it using a package manager or by downloading a pre-built binary. Refer to the [available packages](https://just.systems/man/en/packages.html) for installation instructions specific to your operating system.
-
-1. **tytanic:**
-   Install [tytanic](https://tingerrr.github.io/tytanic/index.html), a library essential for testing and working with Typst projects. Use the [quickstart installation guide](https://tingerrr.github.io/tytanic/quickstart/install.html) to get it up and running.
-
-1. **Clone the Repository:**
-   Download the project's source code by cloning the repository to your local machine:
-
-    ```bash
-    git clone https://github.com/nandac/niram-css.git
-    ```
-
-Once you've completed these steps, your development environment will be ready.
-
-### Next Steps
-
-The `niram-css` package source code is located at:
-
-```plaintext
-src/niram-css.typ
-```
-
-This is where you will make any necessary changes to the module.
-
-### Running Tests
-
-To test the functionality of the module locally, run the predefined test cases using the following command:
-
-```bash
-just test
-```
-
-Ensure that all tests pass before submitting any changes to maintain the project's integrity.
-
-If you want to test the module with a Typst file, you can install the `niram-css` package locally in the `preview` location by running:
-
-```bash
-just install-preview
-```
-
-Once installed, you can import the package into your Typst file using the following statement:
-
-```typ
-#import "@preview/niram-css:0.1.0": *
-```
-
-This setup allows you to experiment with the module in a Typst file before finalizing your changes.
+This package requires Typst 0.13.0 or higher.
 
 ## Usage
 
-The following examples demonstrate the usage of the `niram-css` package in various cases:
+The following examples illustrate common uses of the `niram-css` package:
 
 ```typ
 #import "@preview/niram-css:0.1.0": *
@@ -97,7 +49,113 @@ The following examples demonstrate the usage of the `niram-css` package in vario
   <img src="./thumbnail-2-light.svg" alt="">
 </picture>
 
-For more examples, in-depth explanations, and the PDF output, please refer to the project manual.
+For more examples, in-depth explanations, and the PDF output, please refer to the [project manual](docs/manual.pdf).
+
+## Development
+
+If you wish to contribute to this package, follow the steps below to prepare your development environment. The package source is in `src/lib.typ`.
+
+1. **Typst:** Install Typst (version 0.13.0 or higher) following the [official guide](https://github.com/typst/typst?tab=readme-ov-file#installation). Typst is the core tool required for this project.
+
+1. **Just:** Install [Just](https://just.systems/man/en/introduction.html), a command runner for executing predefined tasks. Refer to the [available packages](https://just.systems/man/en/packages.html) for installation instructions specific to your operating system.
+
+1. **tytanic:** Install [tytanic](https://tingerrr.github.io/tytanic/index.html), a library essential for testing and working with Typst projects. Use the [quickstart installation guide](https://tingerrr.github.io/tytanic/quickstart/install.html) to get it up and running.
+
+1. **Clone the Repository:** Download the project's source code by cloning the repository to your local machine:
+
+    ```bash
+    git clone https://github.com/nandac/niram-css.git
+    ```
+
+    Your development environment is now ready.
+
+### Running Tests
+
+To validate the package functionality, execute the following command:
+
+```bash
+just test
+```
+
+To add a new test case execute:
+
+```bash
+tt new <test-case-name>
+```
+
+This will create a new folder with the following structure under the `tests` directory:
+
+```bash
+├── <test-case-name>
+│   ├── .gitignore
+│   ├── ref
+│   │   └── 1.png
+│   └── test.typ
+```
+
+You may then write your tests in the `test.typ` file.
+
+For more information on writing tests using tytanic please see this [guide](https://typst-community.github.io/tytanic/guides/tests.html).
+
+Once you have written your test run:
+
+```bash
+just update
+just test
+```
+
+Ensure all tests pass before submitting changes to maintain code quality.
+
+To test the package with an actual Typst file, install the `niram-css` package locally in the `preview` location by running:
+
+```bash
+just install-preview
+```
+
+Once installed, import it into your Typst file using:
+
+```typ
+#import "@preview/niram-css:0.1.0": *
+```
+
+This allows experimentation with the package before finalizing updates.
+
+### Releasing a New Version
+
+Follow these steps to release a new version of the package:
+
+1. **Update Version Number:**
+
+   * Increment the major and/or minor version number in all files referencing the old version.
+
+1. **Update CHANGELOG:**
+
+   * Document added features, modifications, and optionally include a migration guide for the new version in `CHANGELOG.md`.
+   * Use the guidelines given at [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
+
+1. **Commit Changes:**
+
+   * Push your updates to the repository:
+
+     ```bash
+     git add -u
+     git commit -m "Bump version and update CHANGELOG"
+     git push
+     ```
+
+1. **Tag the Release:**
+
+   * Create and push a new tag for the version:
+
+     ```bash
+     git tag -a v<version> -m "<release-text>"
+     git push --tags origin
+     ```
+
+1. **Create a Pull Request:**
+
+    * The release action in GitHub will create a branch in your fork of typst-packages.
+    * Use this branch to open a pull request in the main [Typst Packages repository](https://github.com/typst/packages).
 
 ## Acknowledgments
 

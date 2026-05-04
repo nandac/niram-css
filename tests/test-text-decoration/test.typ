@@ -1,4 +1,7 @@
-#import "/src/niram-css.typ": *
+/// Verifies that colors returned by `css` can be used in text fill and
+/// underline stroke, producing output identical to the equivalent `rgb` literal.
+
+#import "/src/lib.typ": *
 
 #assert.eq(
   text(fill: css("crimson"))[colored text],

@@ -149,8 +149,18 @@
 )
 
 #let css(color-name) = {
-  if lower(str(color-name)) in css-colors {
-    css-colors.at(lower(str(color-name)))
+  // Normalise to the canonical CSS no-separator lowercase form so all common
+  // naming conventions resolve to the same key in css-colors:
+  //   spaces     → "cornflower blue"  (X11 / GIMP / Matplotlib)
+  //   hyphens    → "cornflower-blue"  (CSS tooling / LaTeX xcolor)
+  //   underscores→ "cornflower_blue"  (X11 alternate / Python / R)
+  //   CamelCase  → "CornflowerBlue"   (X11 / .NET / Java) — handled by lower()
+  let normalized = lower(str(color-name))
+    .replace(" ", "")
+    .replace("-", "")
+    .replace("_", "")
+  if normalized in css-colors {
+    css-colors.at(normalized)
   } else {
     panic("error: invalid CSS color name: " + str(color-name))
   }

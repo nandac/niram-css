@@ -1,4 +1,8 @@
-#import "/src/niram-css.typ": *
+/// Verifies that colors returned by `css` can be used as fill values on
+/// Typst shapes (rect, box, polygon), producing output identical to the
+/// equivalent `rgb` literal.
+
+#import "/src/lib.typ": *
 
 #assert.eq(
   rect(width: 100%, height: auto, fill: css("darkorchid")),

@@ -3,7 +3,7 @@
 [package]
 name = "niram-css"
 version = "0.1.0"
-entrypoint = "src/niram-css.typ"
+entrypoint = "src/lib.typ"
 authors = ["nandac"]
 license = "Unlicense"
 description = "Allows CSS named colors to be used directly in a Typst document"
