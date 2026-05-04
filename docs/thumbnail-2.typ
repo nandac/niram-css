@@ -1,4 +1,4 @@
-#import "@preview/niram-css:0.1.0": *
+#import "@preview/niram-css:0.2.0": *
 
 #set page(height: auto, margin: 5mm, fill: none)
 
@@ -10,7 +10,7 @@
   #polygon.regular(
     fill: css("darkgoldenrod").lighten(60%),
     stroke: (paint: css("darkgoldenrod"), thickness: 4pt, cap: "round"),
-    size: 60mm,
+    size: 40mm,
     vertices: 6,
   )
 ]

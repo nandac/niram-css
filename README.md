@@ -1,15 +1,29 @@
 # The `niram-css` Package
 <!-- markdownlint-disable MD033 -->
-<div align="center">Version 0.1.0</div>
+<div align="center">Version 0.2.0</div>
 
-Allows CSS/SVG named colors to be used directly in a Typst document.
+The `niram-css` package provides a seamless way to use standard CSS color names directly within your Typst documents.
+
+While Typst ships with a carefully curated set of predefined colors, accessing the broader spectrum of familiar CSS color keywords usually requires manually hunting down and entering hex or RGB values. `niram-css` bridges this gap by bringing all 147 standardized CSS colors natively into your workflow. Instead of pausing to look up values like `#6495ed`, you can simply type `cornflowerblue` and let the package handle the rest.
+
+*Key features include:*
+
+* *Full CSS/SVG Support:* Access all 147 "recognized color keyword names" from the CSS Color Module Level 3 specification ([see the full color table](https://htmlpreview.github.io/?https://github.com/nandac/niram-css/blob/main/docs/css-colors-table.html)).
+
+* *Flexible Naming Conventions:* Write color names in the format most natural to your workflow. The package normalizes all inputs automatically, meaning `cornflowerblue`, `cornflower blue`, `cornflower-blue`, `cornflower_blue`, and `CornflowerBlue` all resolve to the exact same color.
+
+The word *niram* (நிறம்) means "color" in [Tamil](https://en.wikipedia.org/wiki/Tamil_language), reflecting the package's singular focus on bringing a richer palette to your typesetting.
+
+## Requirements
+
+This package requires Typst 0.13.0 or higher.
 
 ## Getting Started
 
 Import the package at the top of your Typst document:
 
 ```typ
-#import "@preview/niram-css:0.1.0": *
+#import "@preview/niram-css:0.2.0": *
 ```
 
 Then use the `css` function anywhere a color value is expected:
@@ -23,22 +37,18 @@ Normal text may be #text(fill: css("crimson"))[colored so.]
   <img src="./thumbnail-light.svg" alt="">
 </picture>
 
-## Requirements
-
-This package requires Typst 0.13.0 or higher.
+That is all that is required to start using CSS color names in your document.
 
 ## Usage
 
-The following examples illustrate common uses of the `niram-css` package:
+`niram-css` can be used anywhere a Typst color value is expected, including drawing and data visualization:
 
 ```typ
-#import "@preview/niram-css:0.1.0": *
-
 #align(center)[
   #polygon.regular(
     fill: css("darkgoldenrod").lighten(60%),
     stroke: (paint: css("darkgoldenrod"), thickness: 4pt, cap: "round"),
-    size: 60mm,
+    size: 40mm,
     vertices: 6,
   )
 ]
@@ -115,7 +125,7 @@ just install-preview
 Once installed, import it into your Typst file using:
 
 ```typ
-#import "@preview/niram-css:0.1.0": *
+#import "@preview/niram-css:0.2.0": *
 ```
 
 This allows experimentation with the package before finalizing updates.

@@ -2,14 +2,14 @@
 
 [package]
 name = "niram-css"
-version = "0.1.0"
+version = "0.2.0"
 entrypoint = "src/lib.typ"
 authors = ["nandac"]
 license = "Unlicense"
-description = "Allows CSS named colors to be used directly in a Typst document"
+description = "Use all 147 standardized CSS named colors directly in your Typst documents."
 # homepage = ""
 repository = "https://github.com/nandac/niram-css"
-keywords = ["CSS colors", "SVG colors", "named colors"]
+keywords = ["CSS colors", "SVG colors", "named colors", "web colors", "color palette"]
 categories = ["components"]
 disciplines = ["design", "drawing"]
 compiler = "0.13.0"

@@ -41,6 +41,7 @@ jobs:
           tool: just
 
       - name: Determine and check package metadata
+        id: metadata
         run: |
           . scripts/setup
           echo "PKG_NAME=${PKG_PREFIX}" >> "${GITHUB_ENV}"
@@ -51,8 +52,15 @@ jobs:
             exit 1
           fi
 
-          echo "GIT_USER_NAME=$(git log -1 --pretty=format:'%an')" >> "${GITHUB_ENV}"
-          echo "GIT_USER_EMAIL=$(git log -1 --pretty=format:'%ae')" >> "${GITHUB_ENV}"
+          GIT_USER_NAME="$(git log -1 --pretty=format:'%an')"
+          GIT_USER_EMAIL="$(git log -1 --pretty=format:'%ae')"
+          echo "GIT_USER_NAME=${GIT_USER_NAME}" >> "${GITHUB_ENV}"
+          echo "GIT_USER_EMAIL=${GIT_USER_EMAIL}" >> "${GITHUB_ENV}"
+
+          echo "pkg-name=${PKG_PREFIX}" >> "${GITHUB_OUTPUT}"
+          echo "pkg-version=${VERSION}" >> "${GITHUB_OUTPUT}"
+          echo "git-user-name=${GIT_USER_NAME}" >> "${GITHUB_OUTPUT}"
+          echo "git-user-email=${GIT_USER_EMAIL}" >> "${GITHUB_OUTPUT}"
 
       - name: Create archives
         run: |

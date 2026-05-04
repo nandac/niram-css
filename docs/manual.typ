@@ -1,4 +1,4 @@
-#import "@preview/niram-css:0.1.0": *
+#import "@preview/niram-css:0.2.0": *
 #import "highlight-type.typ": highlight-type
 
 // Global Styles
@@ -44,7 +44,7 @@
 
 // End of setup
 
-= `niram-css v0.1.0`
+= `niram-css v0.2.0`
 
 The `niram-css` package provides a seamless way to use standard CSS color names directly within your Typst documents.
 
@@ -52,7 +52,7 @@ While Typst ships with a carefully curated set of predefined colors, accessing t
 
 *Key features include:*
 
-- *Full CSS/SVG Support:* Access all 147 "recognized color keyword names" from the CSS Color Module Level 3 specification (see @available-css-colors, or #link("https://htmlpreview.github.io/?https://github.com/nandac/css-colors/blob/main/docs/css-colors-table.html")[view in a browser]).
+- *Full CSS/SVG Support:* Access all 147 "recognized color keyword names" from the CSS Color Module Level 3 specification (see @available-css-colors, or #link("https://htmlpreview.github.io/?https://github.com/nandac/niram-css/blob/main/docs/css-colors-table.html")[view in a browser]).
 
 - *Flexible Naming Conventions:* Write color names in the format most natural to your workflow. The package normalizes all inputs automatically, meaning `cornflowerblue`, `cornflower blue`, `cornflower-blue`, `cornflower_blue`, and `CornflowerBlue` all resolve to the exact same color.
 
@@ -67,7 +67,7 @@ This package requires Typst 0.13.0 or higher.
 Import the package at the top of your Typst document:
 
 ```typ
-#import "@preview/niram-css:0.1.0": *
+#import "@preview/niram-css:0.2.0": *
 ```
 
 Then use the `css` function anywhere a color value is expected:
@@ -80,7 +80,7 @@ Normal text may be #text(fill: css("crimson"))[colored so.]
 
 That is all that is required to start using CSS color names in your document.
 
-== Usage Reference
+== Usage
 
 The `niram-css` package provides a single function, `css`, which takes a color name as a string and returns the corresponding RGB color.
 
@@ -114,7 +114,7 @@ The `css` function returns an RGB color. Because the returned value is a standar
 
 === Examples
 
-All examples assume `#import "@preview/niram-css:0.1.0": *` at the top of the document.
+All examples assume `#import "@preview/niram-css:0.2.0": *` at the top of the document.
 
 + Filling a rectangle with a CSS color.
 

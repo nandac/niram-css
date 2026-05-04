@@ -1,4 +1,4 @@
-#import "@preview/niram-css:0.1.0": *
+#import "@preview/niram-css:0.2.0": *
 
 #set page(height: auto, margin: 5mm, fill: none)
 
