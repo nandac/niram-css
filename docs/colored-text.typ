@@ -6,11 +6,5 @@
 #let theme = sys.inputs.at("theme", default: "light")
 #set text(white) if theme == "dark"
 
-#align(center)[
-  #polygon.regular(
-    fill: css("darkgoldenrod").lighten(60%),
-    stroke: (paint: css("darkgoldenrod"), thickness: 4pt, cap: "round"),
-    size: 40mm,
-    vertices: 6,
-  )
-]
+#set text(22pt)
+#align(center)[Normal text may be #text(fill: css("crimson"))[colored so.]]

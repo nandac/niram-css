@@ -46,17 +46,17 @@
 
 = `niram-css v0.2.0`
 
-The `niram-css` package provides a seamless way to use standard CSS color names directly within your Typst documents.
+The `niram-css` package lets you use standard CSS color names directly within your Typst documents.
 
-While Typst ships with a carefully curated set of predefined colors, accessing the broader spectrum of familiar CSS color keywords usually requires manually hunting down and entering hex or RGB values. `niram-css` bridges this gap by bringing all 147 standardized CSS colors natively into your workflow. Instead of pausing to look up values like `#6495ed`, you can simply type `cornflowerblue` and let the package handle the rest.
+While Typst includes a curated set of predefined colors, accessing the full spectrum of familiar CSS keywords often requires hunting down exact hex or RGB values. `niram-css` eliminates this friction by bringing all 147 standardized CSS colors natively into your workflow. Instead of pausing to look up a value like `#6495ed`, you can simply type `cornflowerblue` and let the package do the rest.
 
 *Key features include:*
 
-- *Full CSS/SVG Support:* Access all 147 "recognized color keyword names" from the CSS Color Module Level 3 specification (see @available-css-colors, or #link("https://htmlpreview.github.io/?https://github.com/nandac/niram-css/blob/main/docs/css-colors-table.html")[view in a browser]).
+- *Complete CSS Color Support:* Access all 147 standard color keywords from the CSS3 specification (see @available-css-colors, or #link("https://htmlpreview.github.io/?https://github.com/nandac/niram-css/blob/main/docs/css-colors-table.html")[view in a browser]).
 
-- *Flexible Naming Conventions:* Write color names in the format most natural to your workflow. The package normalizes all inputs automatically, meaning `cornflowerblue`, `cornflower blue`, `cornflower-blue`, `cornflower_blue`, and `CornflowerBlue` all resolve to the exact same color.
+- *Flexible Naming Conventions:* Write color names in the format most natural to you. The package automatically normalizes inputs, meaning `cornflowerblue`, `cornflower blue`, `cornflower-blue`, `cornflower_blue`, and `CornflowerBlue` all resolve to the exact same color.
 
-The word _niram_ (நிறம்) means "color" in #link("https://en.wikipedia.org/wiki/Tamil_language")[Tamil], reflecting the package's singular focus on bringing a richer palette to your typesetting.
+The word _niram_ (நிறம்) means "color" in #link("https://en.wikipedia.org/wiki/Tamil_language")[Tamil], reflecting the package's singular focus on color.
 
 == Requirements
 
@@ -70,7 +70,7 @@ Import the package at the top of your Typst document:
 #import "@preview/niram-css:0.2.0": *
 ```
 
-Then use the `css` function anywhere a color value is expected:
+Then, use the `css` function anywhere a color value is expected:
 
 ```typ
 Normal text may be #text(fill: css("crimson"))[colored so.]
@@ -78,13 +78,11 @@ Normal text may be #text(fill: css("crimson"))[colored so.]
 
 Normal text may be #text(fill: css("crimson"))[colored so.]
 
-That is all that is required to start using CSS color names in your document.
+That is all it takes to start using CSS color names in your document.
 
 == Usage
 
-The `niram-css` package provides a single function, `css`, which takes a color name as a string and returns the corresponding RGB color.
-
-=== `css`
+=== Function Reference
 
 ```typ
 css(color-name: str) -> color
@@ -92,7 +90,7 @@ css(color-name: str) -> color
 
 *color-name* #h(15pt) #highlight-type.str
 
-A string representing the color name. The following naming conventions are all accepted and normalized to the same canonical form before lookup:
+A string representing the color name. The following conventions are all accepted and normalized to a canonical form before lookup:
 
 #table(
   columns: (auto, auto, auto),
@@ -106,15 +104,15 @@ A string representing the color name. The following naming conventions are all a
   [CamelCase], [`CornflowerBlue`], [X11/.NET/Java],
 )
 
-Color name matching is case-insensitive, so `AliceBlue`, `aliceblue`, and `ALICEBLUE` are all equivalent.
+Color name matching is completely case-insensitive; `AliceBlue`, `aliceblue`, and `ALICEBLUE` are all treated identically.
 
 -> #h(15pt) #highlight-type.color
 
-The `css` function returns an RGB color. Because the returned value is a standard Typst color type, it can be seamlessly used with any of Typst's built-in #link("https://typst.app/docs/reference/visualize/color/#definitions-space")[color functions] (such as `.lighten()` or `.darken()`).
+The `css` function returns an RGB color. Because this returned value is a standard Typst color type, you can seamlessly modify it using any of Typst's built-in #link("https://typst.app/docs/reference/visualize/color/#definitions-space")[color functions], such as `.lighten()` or `.darken().`
 
 === Examples
 
-All examples assume `#import "@preview/niram-css:0.2.0": *` at the top of the document.
+All the examples below assume `#import "@preview/niram-css:0.2.0": *` is at the top of the document.
 
 + Filling a rectangle with a CSS color.
 
@@ -124,7 +122,7 @@ All examples assume `#import "@preview/niram-css:0.2.0": *` at the top of the do
 
   #rect(width: 100%, height: auto, fill: css("darkorchid"))
 
-+ CSS color names can be specified in lowercase or CamelCase, so both variants are valid.
++ CSS color names can be written in lowercase or CamelCase. Both variants are valid.
 
   ```typ
   (a) saddlebrown: #box(width: 30mm, height: 1em, fill: css("saddlebrown"))
@@ -136,7 +134,7 @@ All examples assume `#import "@preview/niram-css:0.2.0": *` at the top of the do
 
   (b) SaddleBrown: #box(width: 30mm, height: 1em, fill: css("SaddleBrown"))
 
-+ Typst's built-in maroon has a different hex value than the CSS standard for maroon. To highlight this distinction, the CSS version in the example below is passed with an initial uppercase letter (Maroon).
++ Typst's built-in `maroon` has a different hex value than the standard CSS `maroon`. To highlight this distinction, the CSS version in the example below uses an initial uppercase letter (`Maroon`).
 
   ```typ
   #grid(
@@ -158,7 +156,7 @@ All examples assume `#import "@preview/niram-css:0.2.0": *` at the top of the do
     [CSS maroon], [#css("Maroon").to-hex()], [#box(width: 30mm, height: 1em, fill: css("Maroon"))],
   )
 
-+ CSS colors may also be used in the context of drawing and data visualization.
++ Using CSS colors in drawing and data visualization.
 
   ```typ
   #align(center)[
@@ -180,7 +178,7 @@ All examples assume `#import "@preview/niram-css:0.2.0": *` at the top of the do
     )
   ]
 
-+ CSS colors may be used to underline text.
++ Using CSS colors to underline text.
 
   ```typ
   This is #underline(stroke: css("teal"))[important.]
@@ -224,7 +222,7 @@ Thanks to this standard, these sixteen color names could be used reliably and co
 
 The CSS Level 1 colors introduced in 1996 specified these exact same sixteen colors, while the CSS Level 2 colors, introduced in 1998, expanded to seventeen colors with the addition of `orange`.
 
-=== SVG/CSS Colors
+== CSS/SVG Colors
 
 Finally, the #link("https://www.w3.org/TR/SVG11/types.html#ColorKeywords")[SVG 1.1 Specification] of 2011 #cite(<SVG11>) and the #link("https://www.w3.org/TR/css-color-3/#html4")[CSS Color Module Level 3] #cite(<CSS3>) of 2022 standardized on a list of 147 color names, known as the "recognized color keyword names." They comprise the original HTML/VGA named colors, `orange`, and additional colors drawn from the X11 set.
 

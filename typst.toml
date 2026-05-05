@@ -6,7 +6,7 @@ version = "0.2.0"
 entrypoint = "src/lib.typ"
 authors = ["nandac"]
 license = "Unlicense"
-description = "Use all 147 standard CSS and SVG named colors directly in your Typst documents without looking up hex codes."
+description = "Use CSS named colors in your Typst documents."
 # homepage = ""
 repository = "https://github.com/nandac/niram-css"
 keywords = ["color", "css", "palette", "web", "svg"]
@@ -21,8 +21,8 @@ exclude = [
   ".gitignore",
   ".typstignore",
   "Justfile",
+  "colored-text-dark.svg",
+  "colored-text-light.svg",
   "thumbnail-dark.svg",
   "thumbnail-light.svg",
-  "thumbnail-2-dark.svg",
-  "thumbnail-2-light.svg",
 ]

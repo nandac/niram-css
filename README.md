@@ -2,17 +2,17 @@
 <!-- markdownlint-disable MD033 -->
 <div align="center">Version 0.2.0</div>
 
-The `niram-css` package provides a seamless way to use standard CSS color names directly within your Typst documents.
+The `niram-css` package lets you use standard CSS color names directly within your Typst documents.
 
-While Typst ships with a carefully curated set of predefined colors, accessing the broader spectrum of familiar CSS color keywords usually requires manually hunting down and entering hex or RGB values. `niram-css` bridges this gap by bringing all 147 standardized CSS colors natively into your workflow. Instead of pausing to look up values like `#6495ed`, you can simply type `cornflowerblue` and let the package handle the rest.
+While Typst includes a curated set of predefined colors, accessing the full spectrum of familiar CSS keywords often requires hunting down exact hex or RGB values. `niram-css` eliminates this friction by bringing all 147 standardized CSS colors natively into your workflow. Instead of pausing to look up a value like `#6495ed`, you can simply type `cornflowerblue` and let the package do the rest.
 
-*Key features include:*
+**Key features include:**
 
-* *Full CSS/SVG Support:* Access all 147 "recognized color keyword names" from the CSS Color Module Level 3 specification ([see the full color table](https://htmlpreview.github.io/?https://github.com/nandac/niram-css/blob/main/docs/css-colors-table.html)).
+* **Complete CSS Color Support:** Access all 147 standard color keywords from the CSS3 specification ([view them in a browser](https://htmlpreview.github.io/?https://github.com/nandac/niram-css/blob/main/docs/css-colors-table.html)).
 
-* *Flexible Naming Conventions:* Write color names in the format most natural to your workflow. The package normalizes all inputs automatically, meaning `cornflowerblue`, `cornflower blue`, `cornflower-blue`, `cornflower_blue`, and `CornflowerBlue` all resolve to the exact same color.
+* **Flexible Naming Conventions:** Write color names in the format most natural to you. The package automatically normalizes inputs, meaning `cornflowerblue`, `cornflower blue`, `cornflower-blue`, `cornflower_blue`, and `CornflowerBlue` all resolve to the exact same color.
 
-The word *niram* (நிறம்) means "color" in [Tamil](https://en.wikipedia.org/wiki/Tamil_language), reflecting the package's singular focus on bringing a richer palette to your typesetting.
+The word _niram_ (நிறம்) means "color" in [Tamil](https://en.wikipedia.org/wiki/Tamil_language), reflecting the package's singular focus on color.
 
 ## Requirements
 
@@ -26,46 +26,26 @@ Import the package at the top of your Typst document:
 #import "@preview/niram-css:0.2.0": *
 ```
 
-Then use the `css` function anywhere a color value is expected:
+Then, use the `css` function anywhere a color value is expected:
 
 ```typ
 Normal text may be #text(fill: css("crimson"))[colored so.]
 ```
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./thumbnail-dark.svg">
-  <img src="./thumbnail-light.svg" alt="">
+  <source media="(prefers-color-scheme: dark)" srcset="./colored-text-dark.svg">
+  <img src="./colored-text-light.svg" alt="Text colored with the CSS color Crimson">
 </picture>
 
-That is all that is required to start using CSS color names in your document.
+That is all it takes to start using CSS color names in your document.
 
-## Usage
-
-`niram-css` can be used anywhere a Typst color value is expected, including drawing and data visualization:
-
-```typ
-#align(center)[
-  #polygon.regular(
-    fill: css("darkgoldenrod").lighten(60%),
-    stroke: (paint: css("darkgoldenrod"), thickness: 4pt, cap: "round"),
-    size: 40mm,
-    vertices: 6,
-  )
-]
-```
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./thumbnail-2-dark.svg">
-  <img src="./thumbnail-2-light.svg" alt="">
-</picture>
-
-For more examples, in-depth explanations, and the PDF output, please refer to the [project manual](docs/manual.pdf).
+For more examples, please refer to the [official manual](docs/manual.pdf).
 
 ## Development
 
 If you wish to contribute to this package, follow the steps below to prepare your development environment. The package source is in `src/lib.typ`.
 
-1. **Typst:** Install Typst (version 0.13.0 or higher) following the [official guide](https://github.com/typst/typst?tab=readme-ov-file#installation). Typst is the core tool required for this project.
+1. **Typst:** Install Typst (version 0.13.0 or higher) following the [Typst installation guide](https://github.com/typst/typst?tab=readme-ov-file#installation). Typst is the core tool required for this project.
 
 1. **Just:** Install [Just](https://just.systems/man/en/introduction.html), a command runner for executing predefined tasks. Refer to the [available packages](https://just.systems/man/en/packages.html) for installation instructions specific to your operating system.
 
