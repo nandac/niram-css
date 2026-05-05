@@ -225,7 +225,7 @@ The CSS Level 1 colors introduced in 1996 specified these exact same sixteen col
 
 Finally, the #link("https://www.w3.org/TR/SVG11/types.html#ColorKeywords")[SVG 1.1 Specification] of 2011 #cite(<SVG11>) and the #link("https://www.w3.org/TR/css-color-3/#html4")[CSS Color Module Level 3] #cite(<CSS3>) of 2022 standardized on a list of 147 color names, known as the "recognized color keyword names." They comprise the original HTML/VGA named colors, `orange`, and additional colors drawn from the X11 set.
 
-This standardized list provides a consistent color naming scheme across the Web and has remained stable since its adoption. It is this set of color names that forms the basis for this package. How the CSS colors were given their rather idiosyncratic names is explained in a lighthearted but factual fashion by Alex Sexton in #link("https://www.youtube.com/watch?v=HmStJQzclHc")[this YouTube video] #cite(<CSShistory>).
+This standardized list provides a consistent color naming scheme across the Web and has remained stable since its adoption. It is this set of color names that forms the basis for this package. How the CSS colors were given their rather idiosyncratic names is explained in a factual but lighthearted fashion by Alex Sexton in #link("https://www.youtube.com/watch?v=HmStJQzclHc")[this YouTube video] #cite(<CSShistory>).
 
 While all 147 CSS color names are distinct, only 138 have unique hex values. The nine pairs of color names that share identical hex values are detailed in @css-colors-sharing-hex-value.
 
