@@ -47,15 +47,17 @@
 
 = `niram-css v0.2.0`
 
-The `niram-css` package lets you use standard CSS color names directly within your Typst documents. The word _niram_ (நிறம்) means "color" in #link("https://en.wikipedia.org/wiki/Tamil_language")[Tamil], reflecting the package's singular focus on color.
+The `niram-css` package lets you use standard CSS color names directly in your Typst documents. The word _niram_ (நிறம்) means "color" in #link("https://en.wikipedia.org/wiki/Tamil_language")[Tamil].
 
-While Typst includes a curated set of predefined colors, accessing the full spectrum of familiar CSS keywords often requires hunting down exact hex or RGB values. `niram-css` eliminates this friction by bringing all 147 standardized CSS colors natively into your workflow. Instead of pausing to look up a value like `#6495ed`, you can simply type `cornflowerblue` and let the package do the rest.
+Typst ships with eighteen predefined colors; reaching for anything else means tracking down the exact Hex or RGB value. `niram-css` removes that step by exposing all 147 standardized CSS color keywords as named values.
 
-*Key features include:*
+Instead of pausing to look up `#6495ed`, just write `cornflowerblue`.
+
+*Key features:*
 
 - *Complete CSS Color Support:* Access all 147 standard color keywords from the CSS3 specification (see @css-color-reference, or #link("https://htmlpreview.github.io/?https://github.com/nandac/niram-css/blob/main/docs/css-colors-table.html")[view them in a browser]).
 
-- *Flexible Naming Conventions:* Write color names in the format most natural to you. The package automatically normalizes inputs, meaning `cornflowerblue`, `cornflower blue`, `cornflower-blue`, `cornflower_blue`, and `CornflowerBlue` all resolve to the exact same color.
+- *Flexible Naming Convention:* Write color names in the format most natural to you. Inputs are automatically normalized, meaning `cornflowerblue`, `cornflower blue`, `cornflower-blue`, `cornflower_blue`, and `CornflowerBlue` all resolve to the exact same color.
 
 == Requirements
 
@@ -95,7 +97,7 @@ A string representing the color name. The following conventions are all accepted
   columns: (auto, auto, auto),
   stroke: none,
   inset: (x: 8pt, y: 6pt),
-  table.header([Style], [`Example`], [Common in]),
+  table.header([Style], [Example], [Common in]),
   [No separator], [`cornflowerblue`], [CSS/SVG],
   [`Spaces`], [`cornflower blue`], [X11/GIMP/Matplotlib],
   [`Hyphens`], [`cornflower-blue`], [CSS tooling/LaTeX xcolor],
@@ -141,10 +143,8 @@ The examples below assume that `#import "@preview/niram-css:0.2.0": *` is at the
     rows: 2,
     row-gutter: 10pt,
     column-gutter: 10pt,
-    [(a) saddlebrown],
-    [#box(width: 30mm, height: 1em, fill: css("saddlebrown"))],
-    [(b) SaddleBrown],
-    [#box(width: 30mm, height: 1em, fill: css("SaddleBrown"))],
+    [(a) saddlebrown], [#box(width: 30mm, height: 1em, fill: css("saddlebrown"))],
+    [(b) SaddleBrown], [#box(width: 30mm, height: 1em, fill: css("SaddleBrown"))],
   )
 
 + Typst's built-in `maroon` has a different hex value than the standard CSS `maroon`. To highlight this distinction, the CSS version in the example below uses an initial uppercase letter (`Maroon`).
@@ -169,12 +169,8 @@ The examples below assume that `#import "@preview/niram-css:0.2.0": *` is at the
     rows: 2,
     row-gutter: 10pt,
     column-gutter: 10pt,
-    [Typst maroon],
-    [#color.maroon.to-hex()],
-    [#box(width: 30mm, height: 1em, fill: maroon)],
-    [CSS maroon],
-    [#css("Maroon").to-hex()],
-    [#box(width: 30mm, height: 1em, fill: css("Maroon"))],
+    [Typst maroon], [#color.maroon.to-hex()], [#box(width: 30mm, height: 1em, fill: maroon)],
+    [CSS maroon], [#css("Maroon").to-hex()], [#box(width: 30mm, height: 1em, fill: css("Maroon"))],
   )
 
 + Using CSS colors to underline and double-underline text.
@@ -197,14 +193,8 @@ The examples below assume that `#import "@preview/niram-css:0.2.0": *` is at the
 
   Thin #underline(stroke: css("darkblue"), offset: 2pt)[underline.]
 
-  Double #underline(
-    stroke: (paint: css("darkblue"), thickness: 0.5pt),
-    offset: 2pt,
-  )[
-    #underline(
-      stroke: (paint: css("darkblue"), thickness: 0.5pt),
-      offset: 5pt,
-    )[underline.]
+  Double #underline(stroke: (paint: css("darkblue"), thickness: 0.5pt), offset: 2pt)[
+    #underline(stroke: (paint: css("darkblue"), thickness: 0.5pt), offset: 5pt)[underline.]
   ]
 
   Thick #underline(stroke: (paint: css("darkblue"), thickness: 2pt), offset: 2pt)[underline.]
@@ -312,11 +302,14 @@ However, any X11 numbered gray shade can be reproduced exactly with #link("https
       stroke: none,
       align: (center + horizon,) * 3,
       table.header([Color Name], [Hex Value], [Stripe]),
-      ..css-colors.pairs().map(((name, color)) => (
-        raw(name),
-        raw(color.to-hex()),
-        stripe(color),
-      )).flatten(),
+      ..css-colors
+        .pairs()
+        .map(((name, color)) => (
+          raw(name),
+          raw(color.to-hex()),
+          stripe(color),
+        ))
+        .flatten(),
     )
   ],
   caption: [All 147 CSS named colors with their hex values and stripes.],
@@ -344,7 +337,9 @@ However, any X11 numbered gray shade can be reproduced exactly with #link("https
         ("lightgray", "lightgrey", "#d3d3d3"),
         ("lightslategray", "lightslategrey", "#778899"),
         ("slategray", "slategrey", "#708090"),
-      ).map(((a, b, hex)) => ([#a \ #b], raw(hex), stripe(rgb(hex)))).flatten(),
+      )
+        .map(((a, b, hex)) => ([#a \ #b], raw(hex), stripe(rgb(hex))))
+        .flatten(),
     )
   ],
   caption: [CSS colors sharing the same hex value.],
@@ -357,11 +352,7 @@ However, any X11 numbered gray shade can be reproduced exactly with #link("https
 #figure(
   align(center)[
     #table(
-      table.header(
-        [Color Name],
-        [Typst~Hex~Value], [Stripe],
-        [CSS~Hex~Value], [Stripe],
-      ),
+      table.header([Color Name], [Typst~Hex~Value], [Stripe], [CSS~Hex~Value], [Stripe]),
       columns: 5,
       stroke: none,
       align: (center + horizon,) * 5,
@@ -385,14 +376,16 @@ However, any X11 numbered gray shade can be reproduced exactly with #link("https
         ("teal", color.teal, "#008080"),
         ("white", color.white, "#ffffff"),
         ("yellow", color.yellow, "#ffff00"),
-      ).map(((name, typst-c, css-hex)) => {
-        let css-cells = if css-hex == none {
-          ([---], [---])
-        } else {
-          (raw(css-hex), stripe(rgb(css-hex)))
-        }
-        (raw(name), raw(typst-c.to-hex()), stripe(typst-c), ..css-cells)
-      }).flatten(),
+      )
+        .map(((name, typst-c, css-hex)) => {
+          let css-cells = if css-hex == none {
+            ([---], [---])
+          } else {
+            (raw(css-hex), stripe(rgb(css-hex)))
+          }
+          (raw(name), raw(typst-c.to-hex()), stripe(typst-c), ..css-cells)
+        })
+        .flatten(),
     )
   ],
   caption: [Typst's predefined colors and their CSS counterparts, with hex values and stripes.],
@@ -410,16 +403,18 @@ However, any X11 numbered gray shade can be reproduced exactly with #link("https
       stroke: none,
       align: (center + horizon,) * 4,
       table.header([X11 Name], [Typst Expression], [Hex Value], [Stripe]),
-      ..range(11).map(i => {
-        let n = i * 10
-        let c = black.lighten(n * 1%)
-        (
-          [#raw("gray" + str(n)) \ #raw("grey" + str(n))],
-          raw("black.lighten(" + str(n) + "%)"),
-          raw(c.to-hex()),
-          stripe(c),
-        )
-      }).flatten(),
+      ..range(11)
+        .map(i => {
+          let n = i * 10
+          let c = black.lighten(n * 1%)
+          (
+            [#raw("gray" + str(n)) \ #raw("grey" + str(n))],
+            raw("black.lighten(" + str(n) + "%)"),
+            raw(c.to-hex()),
+            stripe(c),
+          )
+        })
+        .flatten(),
     )
   ],
   caption: [X11 numbered gray equivalents using `black.lighten(n%)`.],
