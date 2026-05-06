@@ -41,6 +41,8 @@
 #show table.cell.where(y: 0): smallcaps
 
 #show figure: set block(breakable: true)
+
+#let stripe(c) = box(width: 3cm, height: 0.5cm, stroke: black, fill: c)
 // End of setup
 
 = `niram-css v0.2.0`
@@ -308,16 +310,16 @@ However, any X11 numbered gray shade can be reproduced exactly with #link("https
       inset: 10pt,
       columns: 3,
       stroke: none,
-      align: (center + horizon, center + horizon, center + horizon),
-      table.header([Color Name], [Hex Value], [Swatch]),
+      align: (center + horizon,) * 3,
+      table.header([Color Name], [Hex Value], [Stripe]),
       ..css-colors.pairs().map(((name, color)) => (
         raw(name),
         raw(color.to-hex()),
-        box(width: 1cm, height: 1cm, stroke: black, fill: color),
+        stripe(color),
       )).flatten(),
     )
   ],
-  caption: [All 147 CSS named colors with their hex values and swatches.],
+  caption: [All 147 CSS named colors with their hex values and stripes.],
 ) <css-color-reference>
 
 #pagebreak()
@@ -330,37 +332,19 @@ However, any X11 numbered gray shade can be reproduced exactly with #link("https
       columns: 3,
       inset: 10pt,
       stroke: none,
-      align: (center + horizon, center + horizon, center + horizon),
-      table.header([Color Names], [Hex Value], [Swatch]),
-      [aqua \ cyan],
-      [`#00ffff`],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: rgb("#00ffff"))],
-      [darkgray \ darkgrey],
-      [`#a9a9a9`],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: rgb("#a9a9a9"))],
-      [darkslategray \ darkslategrey],
-      [`#2f4f4f`],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: rgb("#2f4f4f"))],
-
-      [dimgray \ dimgrey],
-      [`#696969`],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: rgb("#696969"))],
-      [fuchsia \ magenta],
-      [`#ff00ff`],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: rgb("#ff00ff"))],
-      [gray \ grey],
-      [`#808080`],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: rgb("#808080"))],
-      [lightgray \ lightgrey],
-      [`#d3d3d3`],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: rgb("#d3d3d3"))],
-      [lightslategray \ lightslategrey],
-      [`#778899`],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: rgb("#778899"))],
-
-      [slategray \ slategrey],
-      [`#708090`],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: rgb("#708090"))],
+      align: (center + horizon,) * 3,
+      table.header([Color Names], [Hex Value], [Stripe]),
+      ..(
+        ("aqua", "cyan", "#00ffff"),
+        ("darkgray", "darkgrey", "#a9a9a9"),
+        ("darkslategray", "darkslategrey", "#2f4f4f"),
+        ("dimgray", "dimgrey", "#696969"),
+        ("fuchsia", "magenta", "#ff00ff"),
+        ("gray", "grey", "#808080"),
+        ("lightgray", "lightgrey", "#d3d3d3"),
+        ("lightslategray", "lightslategrey", "#778899"),
+        ("slategray", "slategrey", "#708090"),
+      ).map(((a, b, hex)) => ([#a \ #b], raw(hex), stripe(rgb(hex)))).flatten(),
     )
   ],
   caption: [CSS colors sharing the same hex value.],
@@ -373,121 +357,45 @@ However, any X11 numbered gray shade can be reproduced exactly with #link("https
 #figure(
   align(center)[
     #table(
-      table.header([Color Name], [Typst Hex Value], [Swatch], [CSS Hex Value], [Swatch]),
+      table.header(
+        [Color Name],
+        [Typst~Hex~Value], [Stripe],
+        [CSS~Hex~Value], [Stripe],
+      ),
       columns: 5,
       stroke: none,
-      align: (center + horizon, center + horizon, center + horizon, center + horizon, center + horizon),
+      align: (center + horizon,) * 5,
       inset: 10pt,
-      [`aqua`],
-      [#raw(color.aqua.to-hex())],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: rgb(aqua))],
-      [`#00ffff`],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: rgb("#00ffff"))],
-
-      [`black`],
-      [#raw(color.black.to-hex())],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: rgb(black))],
-      [`#000000`],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: rgb("#000000"))],
-
-      [`blue`],
-      [#raw(color.blue.to-hex())],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: rgb(blue))],
-      [`#0000ff`],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: rgb("#0000ff"))],
-
-      [`eastern`],
-      [#raw(color.eastern.to-hex())],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: rgb(eastern))],
-      [---],
-      [---],
-
-      [`fuchsia`],
-      [#raw(color.fuchsia.to-hex())],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: rgb(fuchsia))],
-      [`#ff00ff`],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: rgb("#ff00ff"))],
-
-      [`gray`],
-      [#raw(color.gray.to-hex())],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: rgb(gray))],
-      [`#808080`],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: rgb("#808080"))],
-
-      [`green`],
-      [#raw(color.green.to-hex())],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: rgb(green))],
-      [`#008000`],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: rgb("#008000"))],
-
-      [`lime`],
-      [#raw(color.lime.to-hex())],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: rgb(lime))],
-      [`#00ff00`],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: rgb("#00ff00"))],
-
-      [`maroon`],
-      [#raw(color.maroon.to-hex())],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: rgb(maroon))],
-      [`#800000`],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: rgb("#800000"))],
-
-      [`navy`],
-      [#raw(color.navy.to-hex())],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: rgb(navy))],
-      [`#000080`],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: rgb("#000080"))],
-
-      [`olive`],
-      [#raw(color.olive.to-hex())],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: rgb(olive))],
-      [`#808000`],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: rgb("#808000"))],
-
-      [`orange`],
-      [#raw(color.orange.to-hex())],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: rgb(orange))],
-      [`#ffa500`],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: rgb("#ffa500"))],
-
-      [`purple`],
-      [#raw(color.purple.to-hex())],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: rgb(purple))],
-      [`#800080`],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: rgb("#800080"))],
-
-      [`red`],
-      [#raw(color.red.to-hex())],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: rgb(red))],
-      [`#ff0000`],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: rgb("#ff0000"))],
-
-      [`silver`],
-      [#raw(color.silver.to-hex())],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: rgb(silver))],
-      [`#c0c0c0`],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: rgb("#c0c0c0"))],
-
-      [`teal`],
-      [#raw(color.teal.to-hex())],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: rgb(teal))],
-      [`#008080`],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: rgb("#008080"))],
-
-      [`white`],
-      [#raw(color.white.to-hex())],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: rgb(white))],
-      [`#ffffff`],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: rgb("#ffffff"))],
-
-      [`yellow`],
-      [#raw(color.yellow.to-hex())],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: rgb(yellow))],
-      [`#ffff00`],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: rgb("#ffff00"))],
+      ..(
+        ("aqua", color.aqua, "#00ffff"),
+        ("black", color.black, "#000000"),
+        ("blue", color.blue, "#0000ff"),
+        ("eastern", color.eastern, none),
+        ("fuchsia", color.fuchsia, "#ff00ff"),
+        ("gray", color.gray, "#808080"),
+        ("green", color.green, "#008000"),
+        ("lime", color.lime, "#00ff00"),
+        ("maroon", color.maroon, "#800000"),
+        ("navy", color.navy, "#000080"),
+        ("olive", color.olive, "#808000"),
+        ("orange", color.orange, "#ffa500"),
+        ("purple", color.purple, "#800080"),
+        ("red", color.red, "#ff0000"),
+        ("silver", color.silver, "#c0c0c0"),
+        ("teal", color.teal, "#008080"),
+        ("white", color.white, "#ffffff"),
+        ("yellow", color.yellow, "#ffff00"),
+      ).map(((name, typst-c, css-hex)) => {
+        let css-cells = if css-hex == none {
+          ([---], [---])
+        } else {
+          (raw(css-hex), stripe(rgb(css-hex)))
+        }
+        (raw(name), raw(typst-c.to-hex()), stripe(typst-c), ..css-cells)
+      }).flatten(),
     )
   ],
-  caption: [Typst's predefined colors and their CSS counterparts, with hex values and swatches.],
+  caption: [Typst's predefined colors and their CSS counterparts, with hex values and stripes.],
 ) <comparison-typst-css-colors>
 
 #pagebreak()
@@ -500,22 +408,18 @@ However, any X11 numbered gray shade can be reproduced exactly with #link("https
       columns: 4,
       inset: 10pt,
       stroke: none,
-      align: (center + horizon, center + horizon, center + horizon, center + horizon),
-      table.header([X11 Name], [Typst Expression], [Hex Value], [Swatch]),
-      ..{
-        let cells = ()
-        for i in range(11) {
-          let n = i * 10
-          let c = black.lighten(n * 1%)
-          cells += (
-            [#raw("gray" + str(n)) \ #raw("grey" + str(n))],
-            [#raw("black.lighten(" + str(n) + "%)")],
-            [#raw(c.to-hex())],
-            [#box(width: 1cm, height: 1cm, stroke: black, fill: c)],
-          )
-        }
-        cells
-      },
+      align: (center + horizon,) * 4,
+      table.header([X11 Name], [Typst Expression], [Hex Value], [Stripe]),
+      ..range(11).map(i => {
+        let n = i * 10
+        let c = black.lighten(n * 1%)
+        (
+          [#raw("gray" + str(n)) \ #raw("grey" + str(n))],
+          raw("black.lighten(" + str(n) + "%)"),
+          raw(c.to-hex()),
+          stripe(c),
+        )
+      }).flatten(),
     )
   ],
   caption: [X11 numbered gray equivalents using `black.lighten(n%)`.],

@@ -9,6 +9,7 @@ default:
 # generate manual
 doc:
   typst compile docs/manual.typ docs/manual.pdf
+  typst compile --features html --format html docs/css-colors-table.typ docs/css-colors-table.html
   typst compile docs/colored-text.typ colored-text-light.svg
   typst compile --input theme=dark docs/colored-text.typ colored-text-dark.svg
   typst compile docs/thumbnail.typ thumbnail-light.svg
