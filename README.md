@@ -2,7 +2,7 @@
 <!-- markdownlint-disable MD033 -->
 <div align="center">Version 0.2.0</div>
 
-The `niram-css` package lets you use standard CSS color names directly within your Typst documents.
+The `niram-css` package lets you use standard CSS color names directly within your Typst documents. The word _niram_ (நிறம்) means "color" in [Tamil](https://en.wikipedia.org/wiki/Tamil_language), reflecting the package's singular focus on color.
 
 While Typst includes a curated set of predefined colors, accessing the full spectrum of familiar CSS keywords often requires hunting down exact hex or RGB values. `niram-css` eliminates this friction by bringing all 147 standardized CSS colors natively into your workflow. Instead of pausing to look up a value like `#6495ed`, you can simply type `cornflowerblue` and let the package do the rest.
 
@@ -11,8 +11,6 @@ While Typst includes a curated set of predefined colors, accessing the full spec
 * **Complete CSS Color Support:** Access all 147 standard color keywords from the CSS3 specification ([view them in a browser](https://htmlpreview.github.io/?https://github.com/nandac/niram-css/blob/main/docs/css-colors-table.html)).
 
 * **Flexible Naming Conventions:** Write color names in the format most natural to you. The package automatically normalizes inputs, meaning `cornflowerblue`, `cornflower blue`, `cornflower-blue`, `cornflower_blue`, and `CornflowerBlue` all resolve to the exact same color.
-
-The word _niram_ (நிறம்) means "color" in [Tamil](https://en.wikipedia.org/wiki/Tamil_language), reflecting the package's singular focus on color.
 
 ## Requirements
 

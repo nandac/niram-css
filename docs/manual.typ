@@ -45,17 +45,15 @@
 
 = `niram-css v0.2.0`
 
-The `niram-css` package lets you use standard CSS color names directly within your Typst documents.
+The `niram-css` package lets you use standard CSS color names directly within your Typst documents. The word _niram_ (நிறம்) means "color" in #link("https://en.wikipedia.org/wiki/Tamil_language")[Tamil], reflecting the package's singular focus on color.
 
 While Typst includes a curated set of predefined colors, accessing the full spectrum of familiar CSS keywords often requires hunting down exact hex or RGB values. `niram-css` eliminates this friction by bringing all 147 standardized CSS colors natively into your workflow. Instead of pausing to look up a value like `#6495ed`, you can simply type `cornflowerblue` and let the package do the rest.
 
 *Key features include:*
 
-- *Complete CSS Color Support:* Access all 147 standard color keywords from the CSS3 specification (see @available-css-colors, or #link("https://htmlpreview.github.io/?https://github.com/nandac/niram-css/blob/main/docs/css-colors-table.html")[view in a browser]).
+- *Complete CSS Color Support:* Access all 147 standard color keywords from the CSS3 specification (see @css-color-reference, or #link("https://htmlpreview.github.io/?https://github.com/nandac/niram-css/blob/main/docs/css-colors-table.html")[view them in a browser]).
 
 - *Flexible Naming Conventions:* Write color names in the format most natural to you. The package automatically normalizes inputs, meaning `cornflowerblue`, `cornflower blue`, `cornflower-blue`, `cornflower_blue`, and `CornflowerBlue` all resolve to the exact same color.
-
-The word _niram_ (நிறம்) means "color" in #link("https://en.wikipedia.org/wiki/Tamil_language")[Tamil], reflecting the package's singular focus on color.
 
 == Requirements
 
@@ -107,11 +105,11 @@ Color name matching is completely case-insensitive; `AliceBlue`, `aliceblue`, an
 
 -> #h(15pt) #highlight-type.color
 
-The `css` function returns an RGB color. Because this returned value is a standard Typst color type, you can seamlessly modify it using any of Typst's built-in #link("https://typst.app/docs/reference/visualize/color/#definitions-space")[color functions], such as `.lighten()` or `.darken().`
+The `css` function returns an RGB color. Because the returned value is a standard Typst color type, you can seamlessly modify it using any of Typst's built-in #link("https://typst.app/docs/reference/visualize/color/#definitions-space")[color functions], such as #link("https://typst.app/docs/reference/visualize/color/#definitions-lighten")[`lighten`] or #link("https://typst.app/docs/reference/visualize/color/#definitions-darken")[`darken`].
 
 === Examples
 
-All the examples below assume `#import "@preview/niram-css:0.2.0": *` is at the top of the document.
+The examples below assume that `#import "@preview/niram-css:0.2.0": *` is at the top of the document.
 
 + Filling a rectangle with a CSS color.
 
@@ -121,17 +119,31 @@ All the examples below assume `#import "@preview/niram-css:0.2.0": *` is at the 
 
   #rect(width: 100%, height: auto, fill: css("darkorchid"))
 
-+ CSS color names can be written in lowercase or CamelCase. Both variants are valid.
++ CSS color names can be written in any supported format. Lowercase and CamelCase are shown here.
 
   ```typ
-  (a) saddlebrown: #box(width: 30mm, height: 1em, fill: css("saddlebrown"))
-
-  (b) SaddleBrown: #box(width: 30mm, height: 1em, fill: css("SaddleBrown"))
+  #grid(
+    columns: 2,
+    rows: 2,
+    row-gutter: 10pt,
+    column-gutter: 10pt,
+    [(a) saddlebrown],
+    [#box(width: 30mm, height: 1em, fill: css("saddlebrown"))],
+    [(b) SaddleBrown],
+    [#box(width: 30mm, height: 1em, fill: css("SaddleBrown"))],
+  )
   ```
 
-  (a) saddlebrown: #box(width: 30mm, height: 1em, fill: css("saddlebrown"))
-
-  (b) SaddleBrown: #box(width: 30mm, height: 1em, fill: css("SaddleBrown"))
+  #grid(
+    columns: 2,
+    rows: 2,
+    row-gutter: 10pt,
+    column-gutter: 10pt,
+    [(a) saddlebrown],
+    [#box(width: 30mm, height: 1em, fill: css("saddlebrown"))],
+    [(b) SaddleBrown],
+    [#box(width: 30mm, height: 1em, fill: css("SaddleBrown"))],
+  )
 
 + Typst's built-in `maroon` has a different hex value than the standard CSS `maroon`. To highlight this distinction, the CSS version in the example below uses an initial uppercase letter (`Maroon`).
 
@@ -141,8 +153,12 @@ All the examples below assume `#import "@preview/niram-css:0.2.0": *` is at the 
     rows: 2,
     row-gutter: 10pt,
     column-gutter: 10pt,
-    [Typst maroon], [#color.maroon.to-hex()], [#box(width: 30mm, height: 1em, fill: maroon)],
-    [CSS maroon], [#css("Maroon").to-hex()], [#box(width: 30mm, height: 1em, fill: css("Maroon"))]
+    [Typst maroon],
+    [#color.maroon.to-hex()],
+    [#box(width: 30mm, height: 1em, fill: maroon)],
+    [CSS maroon],
+    [#css("Maroon").to-hex()],
+    [#box(width: 30mm, height: 1em, fill: css("Maroon"))],
   )
   ```
 
@@ -151,54 +167,92 @@ All the examples below assume `#import "@preview/niram-css:0.2.0": *` is at the 
     rows: 2,
     row-gutter: 10pt,
     column-gutter: 10pt,
-    [Typst maroon], [#color.maroon.to-hex()], [#box(width: 30mm, height: 1em, fill: maroon)],
-    [CSS maroon], [#css("Maroon").to-hex()], [#box(width: 30mm, height: 1em, fill: css("Maroon"))],
+    [Typst maroon],
+    [#color.maroon.to-hex()],
+    [#box(width: 30mm, height: 1em, fill: maroon)],
+    [CSS maroon],
+    [#css("Maroon").to-hex()],
+    [#box(width: 30mm, height: 1em, fill: css("Maroon"))],
   )
+
++ Using CSS colors to underline and double-underline text.
+
+  ```typ
+  This is #underline(stroke: css("darkblue"), offset: 2pt)[underlined once.]
+
+  This is #underline(
+    stroke: (paint: css("darkblue"), thickness: 1pt),
+    offset: 2pt,
+  )[
+    #underline(
+      stroke: (paint: css("darkblue"), thickness: 1pt),
+      offset: 5pt,
+    )[underlined twice.]
+  ]
+  ```
+
+  This is #underline(stroke: css("darkblue"), offset: 2pt)[underlined once.]
+
+  This is #underline(
+    stroke: (paint: css("darkblue"), thickness: 1pt),
+    offset: 2pt,
+  )[
+    #underline(
+      stroke: (paint: css("darkblue"), thickness: 1pt),
+      offset: 5pt,
+    )[underlined twice.]
+  ]
+
 
 + Using CSS colors in drawing and data visualization.
 
   ```typ
   #align(center)[
-    #polygon.regular(
-      fill: css("darkgoldenrod").lighten(60%),
-      stroke: (paint: css("darkgoldenrod"), thickness: 4pt, cap: "round"),
-      size: 60mm,
-      vertices: 6,
-    )
+    #block[
+      #polygon.regular(
+        fill: css("darkgoldenrod").lighten(60%),
+        stroke: (paint: css("darkgoldenrod"), thickness: 4pt),
+        size: 60mm,
+        vertices: 6,
+      )
+      #place(center + horizon)[
+        #circle(
+          radius: 5mm,
+          stroke: (paint: css("midnightblue"), thickness: 2pt),
+          fill: css("cornflowerblue").transparentize(60%),
+        )
+      ]
+    ]
   ]
   ```
 
   #align(center)[
-    #polygon.regular(
-      fill: css("darkgoldenrod").lighten(60%),
-      stroke: (paint: css("darkgoldenrod"), thickness: 4pt, cap: "round"),
-      size: 40mm,
-      vertices: 6,
-    )
+    #block[
+      #polygon.regular(
+        fill: css("darkgoldenrod").lighten(60%),
+        stroke: (paint: css("darkgoldenrod"), thickness: 4pt),
+        size: 60mm,
+        vertices: 6,
+      )
+      #place(center + horizon)[
+        #circle(
+          radius: 5mm,
+          stroke: (paint: css("midnightblue"), thickness: 2pt),
+          fill: css("cornflowerblue").transparentize(60%),
+        )
+      ]
+    ]
   ]
 
-+ Using CSS colors to underline text.
-
-  ```typ
-  This is #underline(stroke: css("teal"))[important.]
-
-  This is #underline(stroke: (paint: css("teal"), thickness: 2pt))[important.]
-  ```
-
-  This is #underline(stroke: css("teal"))[important.]
-
-  This is #underline(stroke: (paint: css("teal"), thickness: 2pt))[important.]
-
-
-== Background: The CSS Color Standard
+== The History of the CSS Color Standard
 
 === X11 Colors
 
-The #link("https://en.wikipedia.org/wiki/X11_color_names")[X11 color names] #cite(<X11colors>), developed in the 1980s, included a file named `rgb.txt` that was shipped with every #link("https://en.wikipedia.org/wiki/X_Window_System")[X11] installation. It mapped over 400 color names to specific RGB values. This list was used in Unix-based systems to standardize color representation, but the list was never formally standardized across web formats, leading to variations between distributions.
+The #link("https://en.wikipedia.org/wiki/X11_color_names")[X11 color names] #cite(<X11colors>), developed in the 1980s, included a file named `rgb.txt` that was shipped with every #link("https://en.wikipedia.org/wiki/X_Window_System")[X11] installation. It mapped over 400 color names to specific RGB values. This list was used in Unix-based systems to standardize color representation, but was never formally standardized across web formats, leading to variations between distributions.
 
 === Sixteen Named Colors
 
-The #link("https://www.w3.org/MarkUp/Wilbur/features.html")[HTML 3.2 specification] #cite(<HTML32>) of 1996 introduced sixteen color names, derived from the standard 16 colors supported by the Windows VGA palette. These colors, called the sixteen named colors, are:
+The #link("https://www.w3.org/MarkUp/Wilbur/features.html")[HTML 3.2 specification] #cite(<HTML32>) of 1996 introduced sixteen color names, derived from the standard sixteen colors supported by the Windows VGA palette. These colors, called the sixteen named colors, are:
 
 - `aqua`
 - `black`
@@ -219,31 +273,31 @@ The #link("https://www.w3.org/MarkUp/Wilbur/features.html")[HTML 3.2 specificati
 
 Thanks to this standard, these sixteen color names could be used reliably and consistently in documents across the Web, without needing to specify hexadecimal values.
 
-The CSS Level 1 colors introduced in 1996 specified these exact same sixteen colors, while the CSS Level 2 colors, introduced in 1998, expanded to seventeen colors with the addition of `orange`.
+The CSS Level 1 colors introduced in 1996 specified these same sixteen colors, while the CSS Level 2 colors, introduced in 1998, expanded to seventeen colors with the addition of `orange`.
 
 == CSS/SVG Colors
 
 Finally, the #link("https://www.w3.org/TR/SVG11/types.html#ColorKeywords")[SVG 1.1 Specification] of 2011 #cite(<SVG11>) and the #link("https://www.w3.org/TR/css-color-3/#html4")[CSS Color Module Level 3] #cite(<CSS3>) of 2022 standardized on a list of 147 color names, known as the "recognized color keyword names." They comprise the original HTML/VGA named colors, `orange`, and additional colors drawn from the X11 set.
 
-This standardized list provides a consistent color naming scheme across the Web and has remained stable since its adoption. It is this set of color names that forms the basis for this package. How the CSS colors were given their rather idiosyncratic names is explained in a factual but lighthearted fashion by Alex Sexton in #link("https://www.youtube.com/watch?v=HmStJQzclHc")[this YouTube video] #cite(<CSShistory>).
+This standardized list provides a consistent color naming scheme across the Web and has remained stable since its adoption. This set of color names forms the basis of this package. How the CSS colors were given their rather idiosyncratic names is explained in a factual but lighthearted fashion by Alex Sexton in #link("https://www.youtube.com/watch?v=HmStJQzclHc")[this YouTube video] #cite(<CSShistory>).
 
-While all 147 CSS color names are distinct, only 138 have unique hex values. The nine pairs of color names that share identical hex values are detailed in @css-colors-sharing-hex-value.
+While all 147 CSS color names are distinct, only 138 have unique hex values. The nine pairs of color names that share identical hex values are detailed in @css-color-aliases.
 
-=== CSS Colors vs. Typst Built-ins
+=== Typst's Predefined Colors versus CSS Colors
 
-Typst ships with #link("https://typst.app/docs/reference/visualize/color/#predefined-colors")[eighteen predefined colors], including the sixteen HTML named colors, `orange`, and one additional color named `eastern`. The color `eastern` has no CSS equivalent.
+Typst ships with #link("https://typst.app/docs/reference/visualize/color/#predefined-colors")[eighteen predefined colors], including the sixteen HTML named colors, `orange`, and one additional color, `eastern`, which has no CSS equivalent.
 
-The remaining seventeen Typst colors share names with their CSS counterparts, but---with the exception of white and black---they have different hex values, as shown in @comparison-typst-css-colors.
+The remaining seventeen Typst colors share names with their CSS counterparts, but---with the exception of `white` and `black`---they have different hex values, as shown in @comparison-typst-css-colors.
 
 === X11 Gray Equivalents
 
 X11 color coverage is intentionally out of scope for this package. The X11 database includes numbered color families (e.g. `red1`--`red4`, `blue1`--`blue4`, `gray0`--`gray100`) that are rarely used today.
 
-However, any X11 numbered gray shade can be reproduced exactly without this package using `black.lighten(n%)`, which produces the same result as the corresponding X11 gray. These equivalents are detailed in @x11-gray-equivalents.
+However, any X11 numbered gray shade can be reproduced exactly with #link("https://typst.app/docs/reference/visualize/color/#definitions-lighten")[Typst's `lighten` function] as demonstrated in @x11-gray-equivalents.
 
 #pagebreak()
 
-== CSS Color Reference
+== CSS Named Color Reference
 
 #figure(
   align(center)[
@@ -261,45 +315,31 @@ However, any X11 numbered gray shade can be reproduced exactly without this pack
       [#raw(css("antiquewhite").to-hex())],
       [#box(width: 1cm, height: 1cm, stroke: black, fill: css("antiquewhite"))],
 
-      [`aqua`],
-      [#raw(css("aqua").to-hex())],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("aqua"))],
+      [`aqua`], [#raw(css("aqua").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("aqua"))],
 
       [`aquamarine`],
       [#raw(css("aquamarine").to-hex())],
       [#box(width: 1cm, height: 1cm, stroke: black, fill: css("aquamarine"))],
 
-      [`azure`],
-      [#raw(css("azure").to-hex())],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("azure"))],
+      [`azure`], [#raw(css("azure").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("azure"))],
 
-      [`beige`],
-      [#raw(css("beige").to-hex())],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("beige"))],
+      [`beige`], [#raw(css("beige").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("beige"))],
 
-      [`bisque`],
-      [#raw(css("bisque").to-hex())],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("bisque"))],
+      [`bisque`], [#raw(css("bisque").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("bisque"))],
 
-      [`black`],
-      [#raw(css("black").to-hex())],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("black"))],
+      [`black`], [#raw(css("black").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("black"))],
 
       [`blanchedalmond`],
       [#raw(css("blanchedalmond").to-hex())],
       [#box(width: 1cm, height: 1cm, stroke: black, fill: css("blanchedalmond"))],
 
-      [`blue`],
-      [#raw(css("blue").to-hex())],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("blue"))],
+      [`blue`], [#raw(css("blue").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("blue"))],
 
       [`blueviolet`],
       [#raw(css("blueviolet").to-hex())],
       [#box(width: 1cm, height: 1cm, stroke: black, fill: css("blueviolet"))],
 
-      [`brown`],
-      [#raw(css("brown").to-hex())],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("brown"))],
+      [`brown`], [#raw(css("brown").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("brown"))],
 
       [`burlywood`],
       [#raw(css("burlywood").to-hex())],
@@ -317,9 +357,7 @@ However, any X11 numbered gray shade can be reproduced exactly without this pack
       [#raw(css("chocolate").to-hex())],
       [#box(width: 1cm, height: 1cm, stroke: black, fill: css("chocolate"))],
 
-      [`coral`],
-      [#raw(css("coral").to-hex())],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("coral"))],
+      [`coral`], [#raw(css("coral").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("coral"))],
 
       [`cornflowerblue`],
       [#raw(css("cornflowerblue").to-hex())],
@@ -333,9 +371,7 @@ However, any X11 numbered gray shade can be reproduced exactly without this pack
       [#raw(css("crimson").to-hex())],
       [#box(width: 1cm, height: 1cm, stroke: black, fill: css("crimson"))],
 
-      [`cyan`],
-      [#raw(css("cyan").to-hex())],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("cyan"))],
+      [`cyan`], [#raw(css("cyan").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("cyan"))],
 
       [`darkblue`],
       [#raw(css("darkblue").to-hex())],
@@ -457,29 +493,21 @@ However, any X11 numbered gray shade can be reproduced exactly without this pack
       [#raw(css("ghostwhite").to-hex())],
       [#box(width: 1cm, height: 1cm, stroke: black, fill: css("ghostwhite"))],
 
-      [`gold`],
-      [#raw(css("gold").to-hex())],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("gold"))],
+      [`gold`], [#raw(css("gold").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("gold"))],
 
       [`goldenrod`],
       [#raw(css("goldenrod").to-hex())],
       [#box(width: 1cm, height: 1cm, stroke: black, fill: css("goldenrod"))],
 
-      [`gray`],
-      [#raw(css("gray").to-hex())],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("gray"))],
+      [`gray`], [#raw(css("gray").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("gray"))],
 
-      [`green`],
-      [#raw(css("green").to-hex())],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("green"))],
+      [`green`], [#raw(css("green").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("green"))],
 
       [`greenyellow`],
       [#raw(css("greenyellow").to-hex())],
       [#box(width: 1cm, height: 1cm, stroke: black, fill: css("greenyellow"))],
 
-      [`grey`],
-      [#raw(css("grey").to-hex())],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("grey"))],
+      [`grey`], [#raw(css("grey").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("grey"))],
 
       [`honeydew`],
       [#raw(css("honeydew").to-hex())],
@@ -493,17 +521,11 @@ However, any X11 numbered gray shade can be reproduced exactly without this pack
       [#raw(css("indianred").to-hex())],
       [#box(width: 1cm, height: 1cm, stroke: black, fill: css("indianred"))],
 
-      [`indigo`],
-      [#raw(css("indigo").to-hex())],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("indigo"))],
+      [`indigo`], [#raw(css("indigo").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("indigo"))],
 
-      [`ivory`],
-      [#raw(css("ivory").to-hex())],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("ivory"))],
+      [`ivory`], [#raw(css("ivory").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("ivory"))],
 
-      [`khaki`],
-      [#raw(css("khaki").to-hex())],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("khaki"))],
+      [`khaki`], [#raw(css("khaki").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("khaki"))],
 
       [`lavender`],
       [#raw(css("lavender").to-hex())],
@@ -581,25 +603,19 @@ However, any X11 numbered gray shade can be reproduced exactly without this pack
       [#raw(css("lightyellow").to-hex())],
       [#box(width: 1cm, height: 1cm, stroke: black, fill: css("lightyellow"))],
 
-      [`lime`],
-      [#raw(css("lime").to-hex())],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("lime"))],
+      [`lime`], [#raw(css("lime").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("lime"))],
 
       [`limegreen`],
       [#raw(css("limegreen").to-hex())],
       [#box(width: 1cm, height: 1cm, stroke: black, fill: css("limegreen"))],
 
-      [`linen`],
-      [#raw(css("linen").to-hex())],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("linen"))],
+      [`linen`], [#raw(css("linen").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("linen"))],
 
       [`magenta`],
       [#raw(css("magenta").to-hex())],
       [#box(width: 1cm, height: 1cm, stroke: black, fill: css("magenta"))],
 
-      [`maroon`],
-      [#raw(css("maroon").to-hex())],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("maroon"))],
+      [`maroon`], [#raw(css("maroon").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("maroon"))],
 
       [`mediumaquamarine`],
       [#raw(css("mediumaquamarine").to-hex())],
@@ -657,33 +673,25 @@ However, any X11 numbered gray shade can be reproduced exactly without this pack
       [#raw(css("navajowhite").to-hex())],
       [#box(width: 1cm, height: 1cm, stroke: black, fill: css("navajowhite"))],
 
-      [`navy`],
-      [#raw(css("navy").to-hex())],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("navy"))],
+      [`navy`], [#raw(css("navy").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("navy"))],
 
       [`oldlace`],
       [#raw(css("oldlace").to-hex())],
       [#box(width: 1cm, height: 1cm, stroke: black, fill: css("oldlace"))],
 
-      [`olive`],
-      [#raw(css("olive").to-hex())],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("olive"))],
+      [`olive`], [#raw(css("olive").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("olive"))],
 
       [`olivedrab`],
       [#raw(css("olivedrab").to-hex())],
       [#box(width: 1cm, height: 1cm, stroke: black, fill: css("olivedrab"))],
 
-      [`orange`],
-      [#raw(css("orange").to-hex())],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("orange"))],
+      [`orange`], [#raw(css("orange").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("orange"))],
 
       [`orangered`],
       [#raw(css("orangered").to-hex())],
       [#box(width: 1cm, height: 1cm, stroke: black, fill: css("orangered"))],
 
-      [`orchid`],
-      [#raw(css("orchid").to-hex())],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("orchid"))],
+      [`orchid`], [#raw(css("orchid").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("orchid"))],
 
       [`palegoldenrod`],
       [#raw(css("palegoldenrod").to-hex())],
@@ -709,29 +717,19 @@ However, any X11 numbered gray shade can be reproduced exactly without this pack
       [#raw(css("peachpuff").to-hex())],
       [#box(width: 1cm, height: 1cm, stroke: black, fill: css("peachpuff"))],
 
-      [`peru`],
-      [#raw(css("peru").to-hex())],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("peru"))],
+      [`peru`], [#raw(css("peru").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("peru"))],
 
-      [`pink`],
-      [#raw(css("pink").to-hex())],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("pink"))],
+      [`pink`], [#raw(css("pink").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("pink"))],
 
-      [`plum`],
-      [#raw(css("plum").to-hex())],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("plum"))],
+      [`plum`], [#raw(css("plum").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("plum"))],
 
       [`powderblue`],
       [#raw(css("powderblue").to-hex())],
       [#box(width: 1cm, height: 1cm, stroke: black, fill: css("powderblue"))],
 
-      [`purple`],
-      [#raw(css("purple").to-hex())],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("purple"))],
+      [`purple`], [#raw(css("purple").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("purple"))],
 
-      [`red`],
-      [#raw(css("red").to-hex())],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("red"))],
+      [`red`], [#raw(css("red").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("red"))],
 
       [`rosybrown`],
       [#raw(css("rosybrown").to-hex())],
@@ -745,9 +743,7 @@ However, any X11 numbered gray shade can be reproduced exactly without this pack
       [#raw(css("saddlebrown").to-hex())],
       [#box(width: 1cm, height: 1cm, stroke: black, fill: css("saddlebrown"))],
 
-      [`salmon`],
-      [#raw(css("salmon").to-hex())],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("salmon"))],
+      [`salmon`], [#raw(css("salmon").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("salmon"))],
 
       [`sandybrown`],
       [#raw(css("sandybrown").to-hex())],
@@ -761,13 +757,9 @@ However, any X11 numbered gray shade can be reproduced exactly without this pack
       [#raw(css("seashell").to-hex())],
       [#box(width: 1cm, height: 1cm, stroke: black, fill: css("seashell"))],
 
-      [`sienna`],
-      [#raw(css("sienna").to-hex())],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("sienna"))],
+      [`sienna`], [#raw(css("sienna").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("sienna"))],
 
-      [`silver`],
-      [#raw(css("silver").to-hex())],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("silver"))],
+      [`silver`], [#raw(css("silver").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("silver"))],
 
       [`skyblue`],
       [#raw(css("skyblue").to-hex())],
@@ -785,9 +777,7 @@ However, any X11 numbered gray shade can be reproduced exactly without this pack
       [#raw(css("slategrey").to-hex())],
       [#box(width: 1cm, height: 1cm, stroke: black, fill: css("slategrey"))],
 
-      [`snow`],
-      [#raw(css("snow").to-hex())],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("snow"))],
+      [`snow`], [#raw(css("snow").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("snow"))],
 
       [`springgreen`],
       [#raw(css("springgreen").to-hex())],
@@ -797,45 +787,31 @@ However, any X11 numbered gray shade can be reproduced exactly without this pack
       [#raw(css("steelblue").to-hex())],
       [#box(width: 1cm, height: 1cm, stroke: black, fill: css("steelblue"))],
 
-      [`tan`],
-      [#raw(css("tan").to-hex())],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("tan"))],
+      [`tan`], [#raw(css("tan").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("tan"))],
 
-      [`teal`],
-      [#raw(css("teal").to-hex())],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("teal"))],
+      [`teal`], [#raw(css("teal").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("teal"))],
 
       [`thistle`],
       [#raw(css("thistle").to-hex())],
       [#box(width: 1cm, height: 1cm, stroke: black, fill: css("thistle"))],
 
-      [`tomato`],
-      [#raw(css("tomato").to-hex())],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("tomato"))],
+      [`tomato`], [#raw(css("tomato").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("tomato"))],
 
       [`turquoise`],
       [#raw(css("turquoise").to-hex())],
       [#box(width: 1cm, height: 1cm, stroke: black, fill: css("turquoise"))],
 
-      [`violet`],
-      [#raw(css("violet").to-hex())],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("violet"))],
+      [`violet`], [#raw(css("violet").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("violet"))],
 
-      [`wheat`],
-      [#raw(css("wheat").to-hex())],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("wheat"))],
+      [`wheat`], [#raw(css("wheat").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("wheat"))],
 
-      [`white`],
-      [#raw(css("white").to-hex())],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("white"))],
+      [`white`], [#raw(css("white").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("white"))],
 
       [`whitesmoke`],
       [#raw(css("whitesmoke").to-hex())],
       [#box(width: 1cm, height: 1cm, stroke: black, fill: css("whitesmoke"))],
 
-      [`yellow`],
-      [#raw(css("yellow").to-hex())],
-      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("yellow"))],
+      [`yellow`], [#raw(css("yellow").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("yellow"))],
 
       [`yellowgreen`],
       [#raw(css("yellowgreen").to-hex())],
@@ -843,11 +819,11 @@ However, any X11 numbered gray shade can be reproduced exactly without this pack
     )
   ],
   caption: [All 147 CSS named colors with their hex values and swatches.],
-) <available-css-colors>
+) <css-color-reference>
 
 #pagebreak()
 
-== CSS Color Aliases
+== CSS Colors Sharing the Same Hex Values
 
 #figure(
   align(center)[
@@ -875,16 +851,16 @@ However, any X11 numbered gray shade can be reproduced exactly without this pack
     )
   ],
   caption: [CSS colors sharing the same hex value.],
-) <css-colors-sharing-hex-value>
+) <css-color-aliases>
 
 #pagebreak()
 
-== Typst vs. CSS Color Values
+== Typst's Predefined Colors versus CSS Colors
 
 #figure(
   align(center)[
     #table(
-      table.header([Color Name], [Typst Hex Value], [`Swatch`], [CSS Hex Value], [Swatch]),
+      table.header([Color Name], [Typst Hex Value], [Swatch], [CSS Hex Value], [Swatch]),
       columns: 5,
       stroke: none,
       align: (center + horizon, center + horizon, center + horizon, center + horizon, center + horizon),
@@ -998,7 +974,7 @@ However, any X11 numbered gray shade can be reproduced exactly without this pack
       [#box(width: 1cm, height: 1cm, stroke: black, fill: rgb("#ffff00"))],
     )
   ],
-  caption: [Hex value differences between Typst's predefined colors and their CSS equivalents.],
+  caption: [Typst's predefined colors and their CSS counterparts, with hex values and swatches.],
 ) <comparison-typst-css-colors>
 
 #pagebreak()
@@ -1015,11 +991,12 @@ However, any X11 numbered gray shade can be reproduced exactly without this pack
       table.header([X11 Name], [Typst Expression], [Hex Value], [Swatch]),
       ..{
         let cells = ()
-        for i in range(101) {
-          let c = black.lighten(i * 1%)
+        for i in range(11) {
+          let n = i * 10
+          let c = black.lighten(n * 1%)
           cells += (
-            [#raw("gray" + str(i)) \ #raw("grey" + str(i))],
-            [#raw("black.lighten(" + str(i) + "%)")],
+            [#raw("gray" + str(n)) \ #raw("grey" + str(n))],
+            [#raw("black.lighten(" + str(n) + "%)")],
             [#raw(c.to-hex())],
             [#box(width: 1cm, height: 1cm, stroke: black, fill: c)],
           )
