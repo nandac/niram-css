@@ -2,15 +2,15 @@
 <!-- markdownlint-disable MD033 -->
 <div align="center">Version 0.2.0</div>
 
-The `niram-css` package lets you use standard CSS color names directly within your Typst documents. The word _niram_ (நிறம்) means "color" in [Tamil](https://en.wikipedia.org/wiki/Tamil_language), reflecting the package's singular focus on color.
+The `niram-css` package lets you use standard CSS color names directly in your Typst documents. The word _niram_ (நிறம்), pronounced /n̪ɪrɐm/, means "color" in [Tamil](https://en.wikipedia.org/wiki/Tamil_language).
 
-While Typst includes a curated set of predefined colors, accessing the full spectrum of familiar CSS keywords often requires hunting down exact hex or RGB values. `niram-css` eliminates this friction by bringing all 147 standardized CSS colors natively into your workflow. Instead of pausing to look up a value like `#6495ed`, you can simply type `cornflowerblue` and let the package do the rest.
+Typst ships with eighteen predefined colors which may be referenced by name. Using any other color entails tracking down its exact hex or RGB value. `niram-css` ameliorates this by making all 147 standardized CSS color names available within Typst. Instead of searching for `#6495ed`, just write `cornflowerblue`.
 
-**Key features include:**
+**Key features:**
 
-* **Complete CSS Color Support:** Access all 147 standard color keywords from the CSS3 specification ([view them in a browser](https://htmlpreview.github.io/?https://github.com/nandac/niram-css/blob/main/docs/css-colors-table.html)).
+* **Complete CSS Color Support:** Access all 147 standard color names from the CSS3 specification ([view them in a browser](https://htmlpreview.github.io/?https://github.com/nandac/niram-css/blob/main/docs/css-colors-table.html)).
 
-* **Flexible Naming Conventions:** Write color names in the format most natural to you. The package automatically normalizes inputs, meaning `cornflowerblue`, `cornflower blue`, `cornflower-blue`, `cornflower_blue`, and `CornflowerBlue` all resolve to the exact same color.
+* **Flexible Naming Convention:** Write color names in the format most natural to you. Inputs are automatically normalized, meaning `cornflowerblue`, `cornflower blue`, `Cornflower Blue`, `cornflower-blue`, `cornflower_blue`, `cornflowerBlue`, `CornflowerBlue`, `CORNFLOWER_BLUE` and `CORNFLOWERBLUE` will all resolve to the exact same color.
 
 ## Requirements
 

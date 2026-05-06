@@ -6,58 +6,74 @@
 
 #import "/src/lib.typ": *
 
-// --- case insensitivity ---
+// --- format coverage on a single color (aliceblue → #f0f8ff) ---
+// Every documented input form must resolve to the canonical CSS value.
 
-// all-lowercase
+// no separator, lowercase — CSS/SVG canonical
 #assert.eq(
   css("aliceblue"),
   rgb("#f0f8ff"),
-  message: "Lowercase 'aliceblue' should resolve to #f0f8ff."
+  message: "'aliceblue' should resolve to #f0f8ff."
 )
 
-// mixed case
+// space-separated, lowercase
+#assert.eq(
+  css("alice blue"),
+  rgb("#f0f8ff"),
+  message: "'alice blue' should resolve to #f0f8ff."
+)
+
+// space-separated, title case
+#assert.eq(
+  css("Alice Blue"),
+  rgb("#f0f8ff"),
+  message: "'Alice Blue' should resolve to #f0f8ff."
+)
+
+// hyphen-separated, lowercase
+#assert.eq(
+  css("alice-blue"),
+  rgb("#f0f8ff"),
+  message: "'alice-blue' should resolve to #f0f8ff."
+)
+
+// underscore-separated, lowercase
+#assert.eq(
+  css("alice_blue"),
+  rgb("#f0f8ff"),
+  message: "'alice_blue' should resolve to #f0f8ff."
+)
+
+// lowerCamelCase
+#assert.eq(
+  css("aliceBlue"),
+  rgb("#f0f8ff"),
+  message: "'aliceBlue' should resolve to #f0f8ff."
+)
+
+// UpperCamelCase / PascalCase
 #assert.eq(
   css("AliceBlue"),
   rgb("#f0f8ff"),
-  message: "Mixed-case 'AliceBlue' should resolve to #f0f8ff."
+  message: "'AliceBlue' should resolve to #f0f8ff."
 )
 
-// --- separator styles ---
-
-// no separator — CSS/SVG canonical form
+// SCREAMING_SNAKE_CASE
 #assert.eq(
-  css("cornflowerblue"),
-  rgb("#6495ed"),
-  message: "No-separator form 'cornflowerblue' should resolve to #6495ed."
+  css("ALICE_BLUE"),
+  rgb("#f0f8ff"),
+  message: "'ALICE_BLUE' should resolve to #f0f8ff."
 )
 
-// spaces — X11 / GIMP / Matplotlib
+// all-uppercase, no separator
 #assert.eq(
-  css("cornflower blue"),
-  rgb("#6495ed"),
-  message: "Space-separated form 'cornflower blue' should resolve to #6495ed."
+  css("ALICEBLUE"),
+  rgb("#f0f8ff"),
+  message: "'ALICEBLUE' should resolve to #f0f8ff."
 )
 
-// hyphens — CSS tooling / LaTeX xcolor
-#assert.eq(
-  css("cornflower-blue"),
-  rgb("#6495ed"),
-  message: "Hyphen-separated form 'cornflower-blue' should resolve to #6495ed."
-)
-
-// underscores — X11 alternate / Python / R
-#assert.eq(
-  css("cornflower_blue"),
-  rgb("#6495ed"),
-  message: "Underscore-separated form 'cornflower_blue' should resolve to #6495ed."
-)
-
-// CamelCase — X11 / .NET / Java
-#assert.eq(
-  css("CornflowerBlue"),
-  rgb("#6495ed"),
-  message: "CamelCase form 'CornflowerBlue' should resolve to #6495ed."
-)
+// --- three-word color name (darkslategray → #2f4f4f) ---
+// Verifies the normalizer handles names with more than two segments.
 
 // mixed: spaces + mixed case
 #assert.eq(

@@ -16,6 +16,7 @@
   width: 100%,
 )
 #show link: set text(fill: blue)
+#show ref: set text(fill: blue)
 
 // Text Element configuration
 #show heading.where(level: 1): h1 => {
@@ -36,28 +37,28 @@
   h3
 }
 
-// Table and figure configuration
+// Table configuration
 #show table.cell.where(y: 0): set text(weight: "bold")
 #show table.cell.where(y: 0): smallcaps
 
+// Figure configuration
 #show figure: set block(breakable: true)
+#show figure: set figure.caption(position: top)
 
 #let stripe(c) = box(width: 3cm, height: 0.5cm, stroke: black, fill: c)
 // End of setup
 
 = `niram-css v0.2.0`
 
-The `niram-css` package lets you use standard CSS color names directly in your Typst documents. The word _niram_ (நிறம்) means "color" in #link("https://en.wikipedia.org/wiki/Tamil_language")[Tamil].
+The `niram-css` package lets you use standard CSS color names directly in your Typst documents. The word _niram_ (நிறம்), pronounced /n̪ɪrɐm/, means "color" in #link("https://en.wikipedia.org/wiki/Tamil_language")[Tamil].
 
-Typst ships with eighteen predefined colors; reaching for anything else means tracking down the exact Hex or RGB value. `niram-css` removes that step by exposing all 147 standardized CSS color keywords as named values.
-
-Instead of pausing to look up `#6495ed`, just write `cornflowerblue`.
+Typst ships with eighteen predefined colors which may be referenced by name. Using any other color entails tracking down its exact hex or RGB value. `niram-css` ameliorates this by making all 147 standardized CSS color names available within Typst. Instead of searching for `#6495ed`, just write `cornflowerblue`.
 
 *Key features:*
 
-- *Complete CSS Color Support:* Access all 147 standard color keywords from the CSS3 specification (see @css-color-reference, or #link("https://htmlpreview.github.io/?https://github.com/nandac/niram-css/blob/main/docs/css-colors-table.html")[view them in a browser]).
+- *Complete CSS Color Support:* Access all 147 standard color names from the CSS3 specification (see @all-css-named-colors, or #link("https://htmlpreview.github.io/?https://github.com/nandac/niram-css/blob/main/docs/css-colors-table.html")[view them in a browser]).
 
-- *Flexible Naming Convention:* Write color names in the format most natural to you. Inputs are automatically normalized, meaning `cornflowerblue`, `cornflower blue`, `cornflower-blue`, `cornflower_blue`, and `CornflowerBlue` all resolve to the exact same color.
+- *Flexible Naming Convention:* Write color names in the format most natural to you. Inputs are automatically normalized, meaning `cornflowerblue`, `cornflower blue`, `Cornflower Blue`, `cornflower-blue`,`cornflower_blue`, `cornflowerBlue`, `CornflowerBlue`, `CORNFLOWER_BLUE` and `CORNFLOWERBLUE` will all resolve to the exact same color.
 
 == Requirements
 
@@ -98,14 +99,16 @@ A string representing the color name. The following conventions are all accepted
   stroke: none,
   inset: (x: 8pt, y: 6pt),
   table.header([Style], [Example], [Common in]),
-  [No separator], [`cornflowerblue`], [CSS/SVG],
-  [`Spaces`], [`cornflower blue`], [X11/GIMP/Matplotlib],
-  [`Hyphens`], [`cornflower-blue`], [CSS tooling/LaTeX xcolor],
-  [`Underscores`], [`cornflower_blue`], [X11 alternate/Python/R],
-  [`CamelCase`], [`CornflowerBlue`], [X11/.NET/Java],
+  [lowercase], [`cornflowerblue`], [CSS / SVG],
+  [Spaces], [`cornflower blue`], [X11 / GIMP / Matplotlib],
+  [Title Case], [`Cornflower Blue`], [UI Labels / Figma],
+  [kebab-case], [`cornflower-blue`], [CSS tooling / LaTeX xcolor],
+  [snake_case], [`cornflower_blue`], [X11 alternate / Python / R],
+  [camelCase], [`cornflowerBlue`], [JavaScript / JSON / Swift],
+  [PascalCase], [`CornflowerBlue`], [X11 / .NET / Java],
+  [SCREAMING_SNAKE_CASE], [`CORNFLOWER_BLUE`], [Env Vars / Constants],
+  [UPPERCASE], [`CORNFLOWERBLUE`], [-],
 )
-
-Color name matching is completely case-insensitive; `AliceBlue`, `aliceblue`, and `ALICEBLUE` are all treated identically.
 
 -> #h(15pt) #highlight-type.color
 
@@ -123,7 +126,7 @@ The examples below assume that `#import "@preview/niram-css:0.2.0": *` is at the
 
   #rect(width: 100%, height: auto, fill: css("darkorchid"))
 
-+ CSS color names can be written in any supported format. Lowercase and CamelCase are shown here.
++ CSS color names can be written in any supported format. Lowercase and PascalCase are shown here.
 
   ```typ
   #grid(
@@ -147,7 +150,7 @@ The examples below assume that `#import "@preview/niram-css:0.2.0": *` is at the
     [(b) SaddleBrown], [#box(width: 30mm, height: 1em, fill: css("SaddleBrown"))],
   )
 
-+ Typst's built-in `maroon` has a different hex value than the standard CSS `maroon`. To highlight this distinction, the CSS version in the example below uses an initial uppercase letter (`Maroon`).
++ Typst's built-in `maroon` has a different hex value than the standard CSS `maroon`. The CSS version of `maroon` is invoked as a quoted string argument to the `css` function. This distinction between the two colors is demonstrated below.
 
   ```typ
   #grid(
@@ -159,8 +162,8 @@ The examples below assume that `#import "@preview/niram-css:0.2.0": *` is at the
     [#color.maroon.to-hex()],
     [#box(width: 30mm, height: 1em, fill: maroon)],
     [CSS maroon],
-    [#css("Maroon").to-hex()],
-    [#box(width: 30mm, height: 1em, fill: css("Maroon"))],
+    [#css("maroon").to-hex()],
+    [#box(width: 30mm, height: 1em, fill: css("maroon"))],
   )
   ```
 
@@ -170,7 +173,7 @@ The examples below assume that `#import "@preview/niram-css:0.2.0": *` is at the
     row-gutter: 10pt,
     column-gutter: 10pt,
     [Typst maroon], [#color.maroon.to-hex()], [#box(width: 30mm, height: 1em, fill: maroon)],
-    [CSS maroon], [#css("Maroon").to-hex()], [#box(width: 30mm, height: 1em, fill: css("Maroon"))],
+    [CSS maroon], [#css("maroon").to-hex()], [#box(width: 30mm, height: 1em, fill: css("maroon"))],
   )
 
 + Using CSS colors to underline and double-underline text.
@@ -247,24 +250,7 @@ The #link("https://en.wikipedia.org/wiki/X11_color_names")[X11 color names] #cit
 
 === Sixteen Named Colors
 
-The #link("https://www.w3.org/MarkUp/Wilbur/features.html")[HTML 3.2 specification] #cite(<HTML32>) of 1996 introduced sixteen color names, derived from the standard sixteen colors supported by the Windows VGA palette. These colors, called the sixteen named colors, are:
-
-- `aqua`
-- `black`
-- `blue`
-- `fuchsia`
-- `gray`
-- `green`
-- `lime`
-- `maroon`
-- `navy`
-- `olive`
-- `purple`
-- `red`
-- `silver`
-- `teal`
-- `white`
-- `yellow`
+The #link("https://www.w3.org/MarkUp/Wilbur/features.html")[HTML 3.2 specification] #cite(<HTML32>) of 1996 introduced sixteen color names, drawn from the Windows VGA palette. Known as the sixteen named colors, they are listed with their hex values in @sixteen-named-colors.
 
 Thanks to this standard, these sixteen color names could be used reliably and consistently in documents across the Web, without needing to specify hexadecimal values.
 
@@ -274,9 +260,9 @@ The CSS Level 1 colors introduced in 1996 specified these same sixteen colors, w
 
 Finally, the #link("https://www.w3.org/TR/SVG11/types.html#ColorKeywords")[SVG 1.1 Specification] of 2011 #cite(<SVG11>) and the #link("https://www.w3.org/TR/css-color-3/#svg-color")[CSS Color Module Level 3] #cite(<CSS3>) of 2022 standardized on a list of 147 color names, known as the "recognized color keyword names." They comprise the original HTML/VGA named colors, `orange`, and additional colors drawn from the X11 set.
 
-This standardized list provides a consistent color naming scheme across the Web and has remained stable since its adoption. This set of color names forms the basis of this package. How the CSS colors were given their rather idiosyncratic names is explained in a factual but lighthearted fashion by Alex Sexton in #link("https://www.youtube.com/watch?v=HmStJQzclHc")[this YouTube video] #cite(<CSShistory>).
+This standardized list — the basis for this package — provides a consistent color naming scheme across the Web and has remained stable since its adoption. How the CSS colors were given their rather idiosyncratic names is explained in a factual but lighthearted fashion by Alex Sexton in #link("https://www.youtube.com/watch?v=HmStJQzclHc")[this YouTube video] #cite(<CSShistory>).
 
-While all 147 CSS color names are distinct, only 138 have unique hex values. The nine pairs of color names that share identical hex values are detailed in @css-color-aliases.
+While all 147 CSS color names are distinct, only 138 have unique hex values. The nine pairs of color names that share identical hex values are detailed in @css-shared-hex-pairs.
 
 === Typst's Predefined Colors versus CSS Colors
 
@@ -312,8 +298,36 @@ However, any X11 numbered gray shade can be reproduced exactly with #link("https
         .flatten(),
     )
   ],
-  caption: [All 147 CSS named colors with their hex values and stripes.],
-) <css-color-reference>
+  caption: [All 147 CSS named colors and their hex values.],
+) <all-css-named-colors>
+
+#pagebreak()
+
+== The Sixteen HTML Named Colors
+
+#figure(
+  align(center)[
+    #table(
+      inset: 10pt,
+      columns: 3,
+      stroke: none,
+      align: (center + horizon,) * 3,
+      table.header([Color Name], [Hex Value], [Stripe]),
+      ..(
+        "aqua", "black", "blue", "fuchsia",
+        "gray", "green", "lime", "maroon",
+        "navy", "olive", "purple", "red",
+        "silver", "teal", "white", "yellow",
+      )
+        .map(name => {
+          let c = css(name)
+          (raw(name), raw(c.to-hex()), stripe(c))
+        })
+        .flatten(),
+    )
+  ],
+  caption: [The sixteen HTML 3.2 named colors and their hex values.],
+) <sixteen-named-colors>
 
 #pagebreak()
 
@@ -342,8 +356,8 @@ However, any X11 numbered gray shade can be reproduced exactly with #link("https
         .flatten(),
     )
   ],
-  caption: [CSS colors sharing the same hex value.],
-) <css-color-aliases>
+  caption: [Pairs of CSS color names that share the same hex value.],
+) <css-shared-hex-pairs>
 
 #pagebreak()
 
@@ -388,7 +402,7 @@ However, any X11 numbered gray shade can be reproduced exactly with #link("https
         .flatten(),
     )
   ],
-  caption: [Typst's predefined colors and their CSS counterparts, with hex values and stripes.],
+  caption: [Typst's predefined colors and their CSS counterparts.],
 ) <comparison-typst-css-colors>
 
 #pagebreak()
@@ -417,7 +431,7 @@ However, any X11 numbered gray shade can be reproduced exactly with #link("https
         .flatten(),
     )
   ],
-  caption: [X11 numbered gray equivalents using `black.lighten(n%)`.],
+  caption: [Selected X11 numbered gray equivalents reproduced with `black.lighten(n%)`.],
 ) <x11-gray-equivalents>
 
 #pagebreak()
