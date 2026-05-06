@@ -178,31 +178,34 @@ The examples below assume that `#import "@preview/niram-css:0.2.0": *` is at the
 + Using CSS colors to underline and double-underline text.
 
   ```typ
-  This is #underline(stroke: css("darkblue"), offset: 2pt)[underlined once.]
+  Thin #underline(stroke: css("darkblue"), offset: 2pt)[underline.]
 
-  This is #underline(
-    stroke: (paint: css("darkblue"), thickness: 1pt),
+  Double #underline(
+    stroke: (paint: css("darkblue"), thickness: 0.5pt),
     offset: 2pt,
   )[
     #underline(
-      stroke: (paint: css("darkblue"), thickness: 1pt),
+      stroke: (paint: css("darkblue"), thickness: 0.5pt),
       offset: 5pt,
-    )[underlined twice.]
+    )[underline.]
   ]
+
+  Thick #underline(stroke: (paint: css("darkblue"), thickness: 2pt), offset: 2pt)[underline.]
   ```
 
-  This is #underline(stroke: css("darkblue"), offset: 2pt)[underlined once.]
+  Thin #underline(stroke: css("darkblue"), offset: 2pt)[underline.]
 
-  This is #underline(
-    stroke: (paint: css("darkblue"), thickness: 1pt),
+  Double #underline(
+    stroke: (paint: css("darkblue"), thickness: 0.5pt),
     offset: 2pt,
   )[
     #underline(
-      stroke: (paint: css("darkblue"), thickness: 1pt),
+      stroke: (paint: css("darkblue"), thickness: 0.5pt),
       offset: 5pt,
-    )[underlined twice.]
+    )[underline.]
   ]
 
+  Thick #underline(stroke: (paint: css("darkblue"), thickness: 2pt), offset: 2pt)[underline.]
 
 + Using CSS colors in drawing and data visualization.
 
@@ -315,31 +318,45 @@ However, any X11 numbered gray shade can be reproduced exactly with #link("https
       [#raw(css("antiquewhite").to-hex())],
       [#box(width: 1cm, height: 1cm, stroke: black, fill: css("antiquewhite"))],
 
-      [`aqua`], [#raw(css("aqua").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("aqua"))],
+      [`aqua`],
+      [#raw(css("aqua").to-hex())],
+      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("aqua"))],
 
       [`aquamarine`],
       [#raw(css("aquamarine").to-hex())],
       [#box(width: 1cm, height: 1cm, stroke: black, fill: css("aquamarine"))],
 
-      [`azure`], [#raw(css("azure").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("azure"))],
+      [`azure`],
+      [#raw(css("azure").to-hex())],
+      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("azure"))],
 
-      [`beige`], [#raw(css("beige").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("beige"))],
+      [`beige`],
+      [#raw(css("beige").to-hex())],
+      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("beige"))],
 
-      [`bisque`], [#raw(css("bisque").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("bisque"))],
+      [`bisque`],
+      [#raw(css("bisque").to-hex())],
+      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("bisque"))],
 
-      [`black`], [#raw(css("black").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("black"))],
+      [`black`],
+      [#raw(css("black").to-hex())],
+      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("black"))],
 
       [`blanchedalmond`],
       [#raw(css("blanchedalmond").to-hex())],
       [#box(width: 1cm, height: 1cm, stroke: black, fill: css("blanchedalmond"))],
 
-      [`blue`], [#raw(css("blue").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("blue"))],
+      [`blue`],
+      [#raw(css("blue").to-hex())],
+      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("blue"))],
 
       [`blueviolet`],
       [#raw(css("blueviolet").to-hex())],
       [#box(width: 1cm, height: 1cm, stroke: black, fill: css("blueviolet"))],
 
-      [`brown`], [#raw(css("brown").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("brown"))],
+      [`brown`],
+      [#raw(css("brown").to-hex())],
+      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("brown"))],
 
       [`burlywood`],
       [#raw(css("burlywood").to-hex())],
@@ -357,7 +374,9 @@ However, any X11 numbered gray shade can be reproduced exactly with #link("https
       [#raw(css("chocolate").to-hex())],
       [#box(width: 1cm, height: 1cm, stroke: black, fill: css("chocolate"))],
 
-      [`coral`], [#raw(css("coral").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("coral"))],
+      [`coral`],
+      [#raw(css("coral").to-hex())],
+      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("coral"))],
 
       [`cornflowerblue`],
       [#raw(css("cornflowerblue").to-hex())],
@@ -371,7 +390,9 @@ However, any X11 numbered gray shade can be reproduced exactly with #link("https
       [#raw(css("crimson").to-hex())],
       [#box(width: 1cm, height: 1cm, stroke: black, fill: css("crimson"))],
 
-      [`cyan`], [#raw(css("cyan").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("cyan"))],
+      [`cyan`],
+      [#raw(css("cyan").to-hex())],
+      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("cyan"))],
 
       [`darkblue`],
       [#raw(css("darkblue").to-hex())],
@@ -493,21 +514,29 @@ However, any X11 numbered gray shade can be reproduced exactly with #link("https
       [#raw(css("ghostwhite").to-hex())],
       [#box(width: 1cm, height: 1cm, stroke: black, fill: css("ghostwhite"))],
 
-      [`gold`], [#raw(css("gold").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("gold"))],
+      [`gold`],
+      [#raw(css("gold").to-hex())],
+      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("gold"))],
 
       [`goldenrod`],
       [#raw(css("goldenrod").to-hex())],
       [#box(width: 1cm, height: 1cm, stroke: black, fill: css("goldenrod"))],
 
-      [`gray`], [#raw(css("gray").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("gray"))],
+      [`gray`],
+      [#raw(css("gray").to-hex())],
+      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("gray"))],
 
-      [`green`], [#raw(css("green").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("green"))],
+      [`green`],
+      [#raw(css("green").to-hex())],
+      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("green"))],
 
       [`greenyellow`],
       [#raw(css("greenyellow").to-hex())],
       [#box(width: 1cm, height: 1cm, stroke: black, fill: css("greenyellow"))],
 
-      [`grey`], [#raw(css("grey").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("grey"))],
+      [`grey`],
+      [#raw(css("grey").to-hex())],
+      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("grey"))],
 
       [`honeydew`],
       [#raw(css("honeydew").to-hex())],
@@ -521,11 +550,17 @@ However, any X11 numbered gray shade can be reproduced exactly with #link("https
       [#raw(css("indianred").to-hex())],
       [#box(width: 1cm, height: 1cm, stroke: black, fill: css("indianred"))],
 
-      [`indigo`], [#raw(css("indigo").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("indigo"))],
+      [`indigo`],
+      [#raw(css("indigo").to-hex())],
+      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("indigo"))],
 
-      [`ivory`], [#raw(css("ivory").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("ivory"))],
+      [`ivory`],
+      [#raw(css("ivory").to-hex())],
+      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("ivory"))],
 
-      [`khaki`], [#raw(css("khaki").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("khaki"))],
+      [`khaki`],
+      [#raw(css("khaki").to-hex())],
+      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("khaki"))],
 
       [`lavender`],
       [#raw(css("lavender").to-hex())],
@@ -603,19 +638,25 @@ However, any X11 numbered gray shade can be reproduced exactly with #link("https
       [#raw(css("lightyellow").to-hex())],
       [#box(width: 1cm, height: 1cm, stroke: black, fill: css("lightyellow"))],
 
-      [`lime`], [#raw(css("lime").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("lime"))],
+      [`lime`],
+      [#raw(css("lime").to-hex())],
+      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("lime"))],
 
       [`limegreen`],
       [#raw(css("limegreen").to-hex())],
       [#box(width: 1cm, height: 1cm, stroke: black, fill: css("limegreen"))],
 
-      [`linen`], [#raw(css("linen").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("linen"))],
+      [`linen`],
+      [#raw(css("linen").to-hex())],
+      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("linen"))],
 
       [`magenta`],
       [#raw(css("magenta").to-hex())],
       [#box(width: 1cm, height: 1cm, stroke: black, fill: css("magenta"))],
 
-      [`maroon`], [#raw(css("maroon").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("maroon"))],
+      [`maroon`],
+      [#raw(css("maroon").to-hex())],
+      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("maroon"))],
 
       [`mediumaquamarine`],
       [#raw(css("mediumaquamarine").to-hex())],
@@ -673,25 +714,33 @@ However, any X11 numbered gray shade can be reproduced exactly with #link("https
       [#raw(css("navajowhite").to-hex())],
       [#box(width: 1cm, height: 1cm, stroke: black, fill: css("navajowhite"))],
 
-      [`navy`], [#raw(css("navy").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("navy"))],
+      [`navy`],
+      [#raw(css("navy").to-hex())],
+      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("navy"))],
 
       [`oldlace`],
       [#raw(css("oldlace").to-hex())],
       [#box(width: 1cm, height: 1cm, stroke: black, fill: css("oldlace"))],
 
-      [`olive`], [#raw(css("olive").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("olive"))],
+      [`olive`],
+      [#raw(css("olive").to-hex())],
+      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("olive"))],
 
       [`olivedrab`],
       [#raw(css("olivedrab").to-hex())],
       [#box(width: 1cm, height: 1cm, stroke: black, fill: css("olivedrab"))],
 
-      [`orange`], [#raw(css("orange").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("orange"))],
+      [`orange`],
+      [#raw(css("orange").to-hex())],
+      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("orange"))],
 
       [`orangered`],
       [#raw(css("orangered").to-hex())],
       [#box(width: 1cm, height: 1cm, stroke: black, fill: css("orangered"))],
 
-      [`orchid`], [#raw(css("orchid").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("orchid"))],
+      [`orchid`],
+      [#raw(css("orchid").to-hex())],
+      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("orchid"))],
 
       [`palegoldenrod`],
       [#raw(css("palegoldenrod").to-hex())],
@@ -717,19 +766,29 @@ However, any X11 numbered gray shade can be reproduced exactly with #link("https
       [#raw(css("peachpuff").to-hex())],
       [#box(width: 1cm, height: 1cm, stroke: black, fill: css("peachpuff"))],
 
-      [`peru`], [#raw(css("peru").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("peru"))],
+      [`peru`],
+      [#raw(css("peru").to-hex())],
+      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("peru"))],
 
-      [`pink`], [#raw(css("pink").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("pink"))],
+      [`pink`],
+      [#raw(css("pink").to-hex())],
+      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("pink"))],
 
-      [`plum`], [#raw(css("plum").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("plum"))],
+      [`plum`],
+      [#raw(css("plum").to-hex())],
+      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("plum"))],
 
       [`powderblue`],
       [#raw(css("powderblue").to-hex())],
       [#box(width: 1cm, height: 1cm, stroke: black, fill: css("powderblue"))],
 
-      [`purple`], [#raw(css("purple").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("purple"))],
+      [`purple`],
+      [#raw(css("purple").to-hex())],
+      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("purple"))],
 
-      [`red`], [#raw(css("red").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("red"))],
+      [`red`],
+      [#raw(css("red").to-hex())],
+      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("red"))],
 
       [`rosybrown`],
       [#raw(css("rosybrown").to-hex())],
@@ -743,7 +802,9 @@ However, any X11 numbered gray shade can be reproduced exactly with #link("https
       [#raw(css("saddlebrown").to-hex())],
       [#box(width: 1cm, height: 1cm, stroke: black, fill: css("saddlebrown"))],
 
-      [`salmon`], [#raw(css("salmon").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("salmon"))],
+      [`salmon`],
+      [#raw(css("salmon").to-hex())],
+      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("salmon"))],
 
       [`sandybrown`],
       [#raw(css("sandybrown").to-hex())],
@@ -757,9 +818,13 @@ However, any X11 numbered gray shade can be reproduced exactly with #link("https
       [#raw(css("seashell").to-hex())],
       [#box(width: 1cm, height: 1cm, stroke: black, fill: css("seashell"))],
 
-      [`sienna`], [#raw(css("sienna").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("sienna"))],
+      [`sienna`],
+      [#raw(css("sienna").to-hex())],
+      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("sienna"))],
 
-      [`silver`], [#raw(css("silver").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("silver"))],
+      [`silver`],
+      [#raw(css("silver").to-hex())],
+      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("silver"))],
 
       [`skyblue`],
       [#raw(css("skyblue").to-hex())],
@@ -777,7 +842,9 @@ However, any X11 numbered gray shade can be reproduced exactly with #link("https
       [#raw(css("slategrey").to-hex())],
       [#box(width: 1cm, height: 1cm, stroke: black, fill: css("slategrey"))],
 
-      [`snow`], [#raw(css("snow").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("snow"))],
+      [`snow`],
+      [#raw(css("snow").to-hex())],
+      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("snow"))],
 
       [`springgreen`],
       [#raw(css("springgreen").to-hex())],
@@ -787,31 +854,45 @@ However, any X11 numbered gray shade can be reproduced exactly with #link("https
       [#raw(css("steelblue").to-hex())],
       [#box(width: 1cm, height: 1cm, stroke: black, fill: css("steelblue"))],
 
-      [`tan`], [#raw(css("tan").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("tan"))],
+      [`tan`],
+      [#raw(css("tan").to-hex())],
+      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("tan"))],
 
-      [`teal`], [#raw(css("teal").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("teal"))],
+      [`teal`],
+      [#raw(css("teal").to-hex())],
+      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("teal"))],
 
       [`thistle`],
       [#raw(css("thistle").to-hex())],
       [#box(width: 1cm, height: 1cm, stroke: black, fill: css("thistle"))],
 
-      [`tomato`], [#raw(css("tomato").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("tomato"))],
+      [`tomato`],
+      [#raw(css("tomato").to-hex())],
+      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("tomato"))],
 
       [`turquoise`],
       [#raw(css("turquoise").to-hex())],
       [#box(width: 1cm, height: 1cm, stroke: black, fill: css("turquoise"))],
 
-      [`violet`], [#raw(css("violet").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("violet"))],
+      [`violet`],
+      [#raw(css("violet").to-hex())],
+      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("violet"))],
 
-      [`wheat`], [#raw(css("wheat").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("wheat"))],
+      [`wheat`],
+      [#raw(css("wheat").to-hex())],
+      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("wheat"))],
 
-      [`white`], [#raw(css("white").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("white"))],
+      [`white`],
+      [#raw(css("white").to-hex())],
+      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("white"))],
 
       [`whitesmoke`],
       [#raw(css("whitesmoke").to-hex())],
       [#box(width: 1cm, height: 1cm, stroke: black, fill: css("whitesmoke"))],
 
-      [`yellow`], [#raw(css("yellow").to-hex())], [#box(width: 1cm, height: 1cm, stroke: black, fill: css("yellow"))],
+      [`yellow`],
+      [#raw(css("yellow").to-hex())],
+      [#box(width: 1cm, height: 1cm, stroke: black, fill: css("yellow"))],
 
       [`yellowgreen`],
       [#raw(css("yellowgreen").to-hex())],
@@ -833,21 +914,35 @@ However, any X11 numbered gray shade can be reproduced exactly with #link("https
       stroke: none,
       align: (center + horizon, center + horizon, center + horizon),
       table.header([Color Names], [Hex Value], [Swatch]),
-      [aqua \ cyan], [`#00ffff`], [#box(width: 1cm, height: 1cm, stroke: black, fill: rgb("#00ffff"))],
-      [darkgray \ darkgrey], [`#a9a9a9`], [#box(width: 1cm, height: 1cm, stroke: black, fill: rgb("#a9a9a9"))],
+      [aqua \ cyan],
+      [`#00ffff`],
+      [#box(width: 1cm, height: 1cm, stroke: black, fill: rgb("#00ffff"))],
+      [darkgray \ darkgrey],
+      [`#a9a9a9`],
+      [#box(width: 1cm, height: 1cm, stroke: black, fill: rgb("#a9a9a9"))],
       [darkslategray \ darkslategrey],
       [`#2f4f4f`],
       [#box(width: 1cm, height: 1cm, stroke: black, fill: rgb("#2f4f4f"))],
 
-      [dimgray \ dimgrey], [`#696969`], [#box(width: 1cm, height: 1cm, stroke: black, fill: rgb("#696969"))],
-      [fuchsia \ magenta], [`#ff00ff`], [#box(width: 1cm, height: 1cm, stroke: black, fill: rgb("#ff00ff"))],
-      [gray \ grey], [`#808080`], [#box(width: 1cm, height: 1cm, stroke: black, fill: rgb("#808080"))],
-      [lightgray \ lightgrey], [`#d3d3d3`], [#box(width: 1cm, height: 1cm, stroke: black, fill: rgb("#d3d3d3"))],
+      [dimgray \ dimgrey],
+      [`#696969`],
+      [#box(width: 1cm, height: 1cm, stroke: black, fill: rgb("#696969"))],
+      [fuchsia \ magenta],
+      [`#ff00ff`],
+      [#box(width: 1cm, height: 1cm, stroke: black, fill: rgb("#ff00ff"))],
+      [gray \ grey],
+      [`#808080`],
+      [#box(width: 1cm, height: 1cm, stroke: black, fill: rgb("#808080"))],
+      [lightgray \ lightgrey],
+      [`#d3d3d3`],
+      [#box(width: 1cm, height: 1cm, stroke: black, fill: rgb("#d3d3d3"))],
       [lightslategray \ lightslategrey],
       [`#778899`],
       [#box(width: 1cm, height: 1cm, stroke: black, fill: rgb("#778899"))],
 
-      [slategray \ slategrey], [`#708090`], [#box(width: 1cm, height: 1cm, stroke: black, fill: rgb("#708090"))],
+      [slategray \ slategrey],
+      [`#708090`],
+      [#box(width: 1cm, height: 1cm, stroke: black, fill: rgb("#708090"))],
     )
   ],
   caption: [CSS colors sharing the same hex value.],
