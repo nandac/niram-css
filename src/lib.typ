@@ -1,3 +1,13 @@
+/// Mapping of the 147 standardized CSS named colors to their canonical
+/// `rgb` values, as defined in the
+/// #link("https://www.w3.org/TR/css-color-3/#svg-color")[CSS Color Module Level 3]
+/// specification. Keys are stored in the canonical CSS form — lowercase with
+/// no separators (e.g. `cornflowerblue`, not `cornflower-blue`).
+///
+/// Prefer `css` for lookups, which accepts names in any common naming
+/// convention. Direct dictionary access requires the canonical form.
+///
+/// -> dictionary
 #let css-colors = (
   aliceblue: rgb("#f0f8ff"),
   antiquewhite: rgb("#faebd7"),
@@ -148,20 +158,51 @@
   yellowgreen: rgb("#9acd32"),
 )
 
+/// Resolves a CSS color name to its Typst `color` value.
+///
+/// The input is normalized (lowercased, with all spaces, hyphens, and
+/// underscores stripped) before lookup, so every common naming convention
+/// resolves to the same color. For example, all of the inputs below
+/// resolve to `rgb("#6495ed")`:
+///
+/// - `cornflowerblue` — CSS / SVG canonical
+/// - `cornflower blue` — X11 / GIMP
+/// - `Cornflower Blue` — UI Labels / Figma
+/// - `cornflower-blue` — SASS / Less / Tailwind
+/// - `cornflower_blue` — Python / R
+/// - `cornflowerBlue` — JavaScript / JSON / Swift
+/// - `CornflowerBlue` — X11 / .NET / LaTeX xcolor
+/// - `CORNFLOWER_BLUE` — Bash / C constants
+/// - `CORNFLOWERBLUE` — JavaFX
+///
+/// Panics with `"error: CSS color name cannot be empty"` when `color-name`
+/// is the empty string. Panics with `"error: invalid CSS color name: <input>"`
+/// (echoing the original input) when the normalized name is not one of the
+/// 147 CSS named colors.
+///
+/// *Example:*
+/// ```typ
+/// #import "@preview/niram-css:0.2.0": *
+///
+/// #rect(width: 100%, height: 1em, fill: css("crimson"))
+/// #text(fill: css("Cornflower Blue"))[blue text]
+/// #box(fill: css("DARK_ORCHID"))
+/// ```
+///
+/// - color-name (str): The CSS color name in any supported naming convention.
+/// -> color
 #let css(color-name) = {
-  // Normalise to the canonical CSS no-separator lowercase form so all common
-  // naming conventions resolve to the same key in css-colors:
-  //   spaces     → "cornflower blue"  (X11 / GIMP / Matplotlib)
-  //   hyphens    → "cornflower-blue"  (CSS tooling / LaTeX xcolor)
-  //   underscores→ "cornflower_blue"  (X11 alternate / Python / R)
-  //   CamelCase  → "CornflowerBlue"   (X11 / .NET / Java) — handled by lower()
-  let normalized = lower(str(color-name))
+  let original = str(color-name)
+  if original.len() == 0 {
+    panic("error: CSS color name cannot be empty")
+  }
+  let normalized = lower(original)
     .replace(" ", "")
     .replace("-", "")
     .replace("_", "")
   if normalized in css-colors {
     css-colors.at(normalized)
   } else {
-    panic("error: invalid CSS color name: " + str(color-name))
+    panic("error: invalid CSS color name: " + original)
   }
 }

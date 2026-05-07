@@ -15,3 +15,9 @@
   catch(() => css("Not A Color")),
   "panicked with: \"error: invalid CSS color name: Not A Color\""
 )
+
+// empty input: produces a dedicated message instead of a dangling colon
+#assert.eq(
+  catch(() => css("")),
+  "panicked with: \"error: CSS color name cannot be empty\""
+)

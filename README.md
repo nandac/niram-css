@@ -4,13 +4,13 @@
 
 The `niram-css` package lets you use standard CSS color names directly in your Typst documents. The word _niram_ (நிறம்), pronounced /n̪ɪrɐm/, means "color" in [Tamil](https://en.wikipedia.org/wiki/Tamil_language).
 
-Typst ships with eighteen predefined colors which may be referenced by name. Using any other color entails tracking down its exact hex or RGB value. `niram-css` ameliorates this by making all 147 standardized CSS color names available within Typst. Instead of searching for `#6495ed`, just write `cornflowerblue`.
+Typst ships with eighteen predefined colors, which may be referenced by name. Using any other color entails tracking down its exact hex or RGB value. `niram-css` addresses this by making all 147 standardized CSS color names available within Typst. Instead of searching for `#6495ed`, just write `cornflowerblue`.
 
 **Key features:**
 
 * **Complete CSS Color Support:** Access all 147 standard color names from the CSS3 specification ([view them in a browser](https://htmlpreview.github.io/?https://github.com/nandac/niram-css/blob/main/docs/css-colors-table.html)).
 
-* **Flexible Naming Convention:** Write color names in the format most natural to you. Inputs are automatically normalized, meaning `cornflowerblue`, `cornflower blue`, `Cornflower Blue`, `cornflower-blue`, `cornflower_blue`, `cornflowerBlue`, `CornflowerBlue`, `CORNFLOWER_BLUE` and `CORNFLOWERBLUE` will all resolve to the exact same color.
+* **Flexible Naming Convention:** Write color names in the format most natural to you. Inputs are automatically normalized, meaning `cornflowerblue`, `cornflower blue`, `Cornflower Blue`, `cornflower-blue`, `cornflower_blue`, `cornflowerBlue`, `CornflowerBlue`, `CORNFLOWER_BLUE`, and `CORNFLOWERBLUE` will all resolve to the same color.
 
 ## Requirements
 
@@ -27,7 +27,7 @@ Import the package at the top of your Typst document:
 Then, use the `css` function anywhere a color value is expected:
 
 ```typ
-Normal text may be #text(fill: css("crimson"))[colored so.]
+Color any inline text with a CSS name, like #text(fill: css("crimson"))[this crimson text].
 ```
 
 <picture>

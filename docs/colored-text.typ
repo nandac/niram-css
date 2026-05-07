@@ -7,4 +7,6 @@
 #set text(white) if theme == "dark"
 
 #set text(22pt)
-#align(center)[Normal text may be #text(fill: css("crimson"))[colored so.]]
+#align(center)[
+  This is #text(fill: css("crimson"))[crimson] text.
+]
