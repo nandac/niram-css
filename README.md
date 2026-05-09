@@ -2,15 +2,18 @@
 <!-- markdownlint-disable MD033 -->
 <div align="center">Version 0.2.0</div>
 
-The `niram-css` package lets you use standard CSS color names directly in your Typst documents. The word _niram_ (நிறம்), pronounced /n̪ɪrɐm/, means "color" in [Tamil](https://en.wikipedia.org/wiki/Tamil_language).
+`niram-css`[^niram] brings standard CSS color names to Typst.
 
-Typst ships with eighteen predefined colors, which may be referenced by name. Using any other color entails tracking down its exact hex or RGB value. `niram-css` addresses this by making all 147 standardized CSS color names available within Typst. Instead of searching for `#6495ed`, just write `cornflowerblue`.
+While Typst natively ships with [18 predefined colors](https://typst.app/docs/reference/visualize/color/#predefined-colors), using anything outside that set usually means hunting down a hex code. `niram-css` eliminates this friction by giving you access to the standard CSS color names. Instead of writing `#c71585`, you can just write `mediumvioletred`.
 
 **Key features:**
 
-* **Complete CSS Color Support:** Access all 147 standard color names from the CSS3 specification ([view them in a browser](https://htmlpreview.github.io/?https://github.com/nandac/niram-css/blob/main/docs/css-colors-table.html)).
+* **Complete CSS Color Support:** Access all 147 standard CSS color names.[^html-table]
 
-* **Flexible Naming Convention:** Write color names in the format most natural to you. Inputs are automatically normalized, meaning `cornflowerblue`, `cornflower blue`, `Cornflower Blue`, `cornflower-blue`, `cornflower_blue`, `cornflowerBlue`, `CornflowerBlue`, `CORNFLOWER_BLUE`, and `CORNFLOWERBLUE` will all resolve to the same color.
+* **Flexible Naming Convention:** Write color names in whatever form feels most natural to you. Inputs are automatically normalized, meaning `mediumvioletred`, `medium violet red`, `Medium Violet Red`, `medium-violet-red`, `medium_violet_red`, `mediumVioletRed`, `MediumVioletRed`, `MEDIUM_VIOLET_RED`, and `MEDIUMVIOLETRED` will all resolve to the same color.
+
+[^niram]: In [Tamil](https://en.wikipedia.org/wiki/Tamil_language), _niram_ (நிறம், /n̪ɪrɐm/) means "color"—a fitting name for a coloring package.
+[^html-table]: Also available as [an HTML page](https://htmlpreview.github.io/?https://github.com/nandac/niram-css/blob/main/docs/css-colors-table.html) you can view in a browser.
 
 ## Requirements
 
@@ -27,12 +30,12 @@ Import the package at the top of your Typst document:
 Then, use the `css` function anywhere a color value is expected:
 
 ```typ
-Color any inline text with a CSS name, like #text(fill: css("crimson"))[this crimson text].
+This is #text(fill: css("mediumvioletred"))[mediumvioletred] text.
 ```
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="./colored-text-dark.svg">
-  <img src="./colored-text-light.svg" alt="Text colored with the CSS color Crimson">
+  <img src="./colored-text-light.svg" alt="Text colored with the CSS color mediumvioletred">
 </picture>
 
 That is all it takes to start using CSS color names in your document.

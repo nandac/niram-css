@@ -19,7 +19,7 @@
 #let cx = 100pt
 #let cy = 100pt
 
-// outer ring: 24 dots
+// Outer ring: 24 dots
 #{
   let n = outer-colors.len()
   let ring-r = 78pt
@@ -34,7 +34,7 @@
   }
 }
 
-// inner ring: 12 dots
+// Inner ring: 12 dots
 #{
   let n = inner-colors.len()
   let ring-r = 45pt

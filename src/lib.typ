@@ -1,13 +1,11 @@
-/// Mapping of the 147 standardized CSS named colors to their canonical
-/// `rgb` values, as defined in the
-/// #link("https://www.w3.org/TR/css-color-3/#svg-color")[CSS Color Module Level 3]
-/// specification. Keys are stored in the canonical CSS form — lowercase with
-/// no separators (e.g. `cornflowerblue`, not `cornflower-blue`).
-///
-/// Prefer `css` for lookups, which accepts names in any common naming
-/// convention. Direct dictionary access requires the canonical form.
-///
-/// -> dictionary
+// Dictionary of the 147 standard CSS named colors.
+// Spec: https://www.w3.org/TR/css-color-3/#svg-color
+//
+// - Keys are strictly canonical: lowercase, no spaces or hyphens (e.g. `lightcoral`).
+// - Values are native Typst `rgb` color objects.
+//
+// API Note: Users should generally call the `css()` wrapper function instead
+// of accessing this directly to benefit from automatic input normalization.
 #let css-colors = (
   aliceblue: rgb("#f0f8ff"),
   antiquewhite: rgb("#faebd7"),
@@ -158,40 +156,36 @@
   yellowgreen: rgb("#9acd32"),
 )
 
-/// Resolves a CSS color name to its Typst `color` value.
+/// Resolves a CSS color name to its native Typst `color` value.
 ///
-/// The input is normalized (lowercased, with all spaces, hyphens, and
-/// underscores stripped) before lookup, so every common naming convention
-/// resolves to the same color. For example, all of the inputs below
-/// resolve to `rgb("#6495ed")`:
+/// The input is automatically normalized before lookup by stripping spaces, hyphens,
+/// and underscores, and converting to lowercase. This allows you to write color names
+/// using whichever convention fits your workflow.
 ///
-/// - `cornflowerblue` — CSS / SVG canonical
-/// - `cornflower blue` — X11 / GIMP
-/// - `Cornflower Blue` — UI Labels / Figma
-/// - `cornflower-blue` — SASS / Less / Tailwind
-/// - `cornflower_blue` — Python / R
-/// - `cornflowerBlue` — JavaScript / JSON / Swift
-/// - `CornflowerBlue` — X11 / .NET / LaTeX xcolor
-/// - `CORNFLOWER_BLUE` — Bash / C constants
-/// - `CORNFLOWERBLUE` — JavaFX
+/// For example, all of the naming conventions below will resolve to `rgb("#c71585")`:
 ///
-/// Panics with `"error: CSS color name cannot be empty"` when `color-name`
-/// is the empty string. Panics with `"error: invalid CSS color name: <input>"`
-/// (echoing the original input) when the normalized name is not one of the
-/// 147 CSS named colors.
+/// #table(
+///   columns: (auto, auto, auto),
+///   stroke: none,
+///   inset: (x: 16pt, y: 6pt),
+///   table.header([Naming Convention], [Example], [Common in]),
+///   [lowercase], [`mediumvioletred`], [CSS / SVG],
+///   [Spaces], [`medium violet red`], [X11 / GIMP],
+///   [Title Case], [`Medium Violet Red`], [UI Labels / Figma],
+///   [kebab-case], [`medium-violet-red`], [SASS / Less / Tailwind],
+///   [snake_case], [`medium_violet_red`], [Python / R],
+///   [camelCase], [`mediumVioletRed`], [JavaScript / JSON / Swift],
+///   [PascalCase], [`MediumVioletRed`], [X11 / .NET / LaTeX xcolor],
+///   [SCREAMING_SNAKE_CASE], [`MEDIUM_VIOLET_RED`], [Bash / C constants],
+///   [UPPERCASE], [`MEDIUMVIOLETRED`], [JavaFX],
+/// )
 ///
-/// *Example:*
-/// ```typ
-/// #import "@preview/niram-css:0.2.0": *
-///
-/// #rect(width: 100%, height: 1em, fill: css("crimson"))
-/// #text(fill: css("Cornflower Blue"))[blue text]
-/// #box(fill: css("DARK_ORCHID"))
-/// ```
-///
-/// - color-name (str): The CSS color name in any supported naming convention.
 /// -> color
-#let css(color-name) = {
+#let css(
+  /// The CSS color name in any supported naming convention.
+  /// -> str
+  color-name
+) = {
   let original = str(color-name)
   if original.len() == 0 {
     panic("error: CSS color name cannot be empty")
