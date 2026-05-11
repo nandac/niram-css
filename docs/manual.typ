@@ -271,7 +271,7 @@ Thanks to this standard, these sixteen color names could be used consistently in
 
 #link("https://www.w3.org/TR/CSS1/#color-units")[CSS Level 1], introduced in 1996, adopted these same sixteen colors, while #link("https://www.w3.org/TR/CSS2/syndata.html#color-units")[CSS Level 2] (1998) expanded the list to seventeen with the addition of `orange`. These colors, along with their hex values, are listed in @seventeen-named-colors.
 
-=== The 147 Standardized Web Colors
+=== The 147 Standardized CSS Colors
 
 The #link("https://www.w3.org/TR/SVG11/types.html#ColorKeywords")[SVG 1.1 specification] in 2011 and the #link("https://www.w3.org/TR/css-color-3/#svg-color")[CSS Color Module Level 3] in 2022 formally standardized 147 colors, officially known as the "recognized color keyword names." This comprehensive set comprises the seventeen basic colors and an additional 130 names drawn directly from the X11 palette.
 
