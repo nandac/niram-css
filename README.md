@@ -2,9 +2,9 @@
 <!-- markdownlint-disable MD033 -->
 <div align="center">Version 0.2.0</div>
 
-`niram-css`[^niram] brings standard CSS color names to Typst.
+`niram-css`[^niram] brings standard CSS color names[^color-keywords] to Typst.
 
-While Typst natively ships with [18 predefined colors](https://typst.app/docs/reference/visualize/color/#predefined-colors), using anything outside that set usually means hunting down a hex code. `niram-css` eliminates this friction by giving you access to the standard CSS color names. Instead of writing `#c71585`, you can just write `mediumvioletred`.
+While Typst natively ships with [eighteen predefined colors](https://typst.app/docs/reference/visualize/color/#predefined-colors), using anything outside that set usually means hunting down a hex code. `niram-css` eliminates this friction by giving you access to the standard CSS color names. Instead of writing `#c71585`, you can just write `mediumvioletred`.
 
 **Key features:**
 
@@ -13,7 +13,8 @@ While Typst natively ships with [18 predefined colors](https://typst.app/docs/re
 * **Flexible Naming Convention:** Write color names in whatever form feels most natural to you. Inputs are automatically normalized, meaning `mediumvioletred`, `medium violet red`, `Medium Violet Red`, `medium-violet-red`, `medium_violet_red`, `mediumVioletRed`, `MediumVioletRed`, `MEDIUM_VIOLET_RED`, and `MEDIUMVIOLETRED` will all resolve to the same color.
 
 [^niram]: In [Tamil](https://en.wikipedia.org/wiki/Tamil_language), _niram_ (நிறம், /n̪ɪrɐm/) means "color"—a fitting name for a coloring package.
-[^html-table]: Also available as [an HTML page](https://htmlpreview.github.io/?https://github.com/nandac/niram-css/blob/main/docs/css-colors-table.html) you can view in a browser.
+[^color-keywords]: While the official W3C specification refers to these as "color keywords," they are almost universally known among web developers as "color names." This documentation uses the common vernacular for readability.
+[^html-table]: You may also view these [colors](https://htmlpreview.github.io/?https://github.com/nandac/niram-css/blob/main/docs/css-colors-table.html) in a web browser.
 
 ## Requirements
 
