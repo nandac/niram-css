@@ -57,7 +57,7 @@ While Typst natively ships with #link("https://typst.app/docs/reference/visualiz
 
 *Key features:*
 
-- *Complete CSS Color Support:* Access all 147 standard CSS color names (see @css-color-names).#footnote[You may also view these #link("https://htmlpreview.github.io/?https://github.com/nandac/niram-css/blob/main/docs/css-colors-table.html")[colors] in a web browser.]
+- *Complete CSS Color Support:* Access all 147 standard CSS color names (see @css-color-names).#footnote[You may also view these #link("https://htmlpreview.github.io/?https://github.com/nandac/niram-css/blob/v0.2.0/docs/css-colors-table.html")[colors] in a web browser.]
 
 - *Flexible Naming Convention:* Write color names in whatever form feels most natural to you. Inputs are automatically normalized, meaning `mediumvioletred`, `medium violet red`, `Medium Violet Red`, `medium-violet-red`, `medium_violet_red`, `mediumVioletRed`, `MediumVioletRed`, `MEDIUM_VIOLET_RED`, and `MEDIUMVIOLETRED` will all resolve to the same color.
 

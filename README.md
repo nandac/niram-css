@@ -14,7 +14,7 @@ While Typst natively ships with [eighteen predefined colors](https://typst.app/d
 
 [^niram]: In [Tamil](https://en.wikipedia.org/wiki/Tamil_language), _niram_ (நிறம், /n̪ɪrɐm/) means "color"—a fitting name for a coloring package.
 [^color-keywords]: While the official W3C specification refers to these as "color keywords," they are almost universally known among web developers as "color names." This documentation uses the common vernacular for readability.
-[^html-table]: You may also view these [colors](https://htmlpreview.github.io/?https://github.com/nandac/niram-css/blob/main/docs/css-colors-table.html) in a web browser.
+[^html-table]: You may also view these [colors](https://htmlpreview.github.io/?https://github.com/nandac/niram-css/blob/v0.2.0/docs/css-colors-table.html) in a web browser.
 
 ## Requirements
 
