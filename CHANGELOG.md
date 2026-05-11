@@ -13,13 +13,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Added additional tests for greater test coverage.
+- Added thumbnail image for package.
 
 ### Changed
 
 - Support different naming conventions for CSS color names.
 - Restructured and improved manual and README to add more information about the package.
-- Updated package description in `typst.toml` to be more descriptive.
-- Expanded `typst.toml` keywords with `web colors` and `color palette`.
 
 ### Fixed
 
