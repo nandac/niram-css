@@ -245,7 +245,7 @@ Since `niram-css` produces native Typst colors, they work anywhere Typst accepts
 
 === Same Name, Different Hex Value <same-name-different-hex>
 
-Typst provides a set of #link("https://typst.app/docs/reference/visualize/color/#predefined-colors")[eighteen predefined colors]. One of these, eastern, is a proprietary addition representing Typst's brand color. The remaining seventeen borrow their _names_ directly from the #link("https://www.w3.org/TR/CSS2/")[CSS Level 2] specification.
+Typst provides a set of #link("https://typst.app/docs/reference/visualize/color/#predefined-colors")[eighteen predefined colors]. One of these, `eastern`, is a proprietary addition representing Typst's brand color. The remaining seventeen borrow their _names_ directly from the #link("https://www.w3.org/TR/CSS2/")[CSS Level 2] specification.
 
 However, sharing a _name_ does not mean sharing a _hex value_. According to Typst's source, its default palette is adapted from the #link("https://clrs.cc/")[colors.css] project by designer #link("https://mrmrs.github.io/")[Adam Morse]. Rather than using standard web hex codes, Morse mapped familiar CSS color names to softer, perceptually balanced values for improved design aesthetics.
 
@@ -265,17 +265,17 @@ The #link("https://en.wikipedia.org/wiki/X11_color_names")[X11 color names], dev
 
 === The Seventeen Foundational Color Names of the Early Web
 
-The #link("https://www.w3.org/MarkUp/Wilbur/features.html")[HTML 3.2 specification] of 1996 introduced 16 color names, drawn from the Windows VGA palette. Known as the 16 named colors.
+The #link("https://www.w3.org/MarkUp/Wilbur/features.html")[HTML 3.2 specification] of 1996 introduced sixteen color names drawn from the Windows VGA palette, commonly known as the _sixteen named colors_.
 
-Thanks to this standard, these 16 color names could be used consistently in documents across the web, without needing to specify hex values.
+Thanks to this standard, these sixteen color names could be used consistently in documents across the web without needing to specify hex values.
 
-#link("https://www.w3.org/TR/CSS1/#color-units")[CSS Level 1], introduced in 1996, adopted these same sixteen colors, while #link("https://www.w3.org/TR/CSS2/syndata.html#color-units")[CSS Level 2] (1998) expanded the list to seventeen with the addition of `orange`. These colors along with their hex values are listed in @seventeen-named-colors.
+#link("https://www.w3.org/TR/CSS1/#color-units")[CSS Level 1], introduced in 1996, adopted these same sixteen colors, while #link("https://www.w3.org/TR/CSS2/syndata.html#color-units")[CSS Level 2] (1998) expanded the list to seventeen with the addition of `orange`. These colors, along with their hex values, are listed in @seventeen-named-colors.
 
 === The 147 Standardized Web Colors
 
 The #link("https://www.w3.org/TR/SVG11/types.html#ColorKeywords")[SVG 1.1 specification] in 2011 and the #link("https://www.w3.org/TR/css-color-3/#svg-color")[CSS Color Module Level 3] in 2022 formally standardized 147 colors, officially known as the "recognized color keyword names." This comprehensive set comprises the seventeen basic colors and an additional 130 names drawn directly from the X11 palette.
 
-Serving as the foundation for this package, this standardized list provides a consistent and unified color naming scheme that has remained perfectly stable across the web since its adoption. (If you are curious about how these specific colors earned their occasionally idiosyncratic names, Alex Sexton gives an excellent breakdown in an informative and lighthearted #link("https://www.youtube.com/watch?v=HmStJQzclHc")[video on YouTube].)
+Serving as the foundation for this package, this standardized list provides a consistent and unified color naming scheme that has remained perfectly stable across the web since its adoption.#footnote[If you are curious about how these specific colors earned their occasionally idiosyncratic names, Alex Sexton gives an excellent breakdown in an informative and lighthearted #link("https://www.youtube.com/watch?v=HmStJQzclHc")[video on YouTube].]
 
 While all 147 CSS color names are distinct, only 138 resolve to unique hex values. Nine of these names function as aliases, sharing an identical hex value with another color on the list. These nine pairs of aliases are detailed in @css-colors-sharing-hex.
 
